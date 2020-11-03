@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS Organization
     inn       INTEGER     NOT NULL COMMENT 'ИНН',
     kpp       INTEGER     NOT NULL COMMENT 'КПП',
     address   VARCHAR(50) NOT NULL COMMENT 'Адрес',
-    phone     VARCHAR(11) NOT NULL COMMENT 'Телефон',
-    is_active BOOLEAN     NOT NULL COMMENT 'Активен'
+    phone     VARCHAR(11) COMMENT 'Телефон',
+    is_active BOOLEAN     COMMENT 'Активен'
 );
 COMMENT ON TABLE Organization IS 'Организация';
 
@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS Office
     version         INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
     name            VARCHAR(15) NOT NULL COMMENT 'Название',
     address         VARCHAR(50) NOT NULL COMMENT 'Адрес',
-    phone           VARCHAR(11) NOT NULL COMMENT 'Телефон',
-    is_active       BOOLEAN     NOT NULL COMMENT 'Активен',
+    phone           VARCHAR(11) COMMENT 'Телефон',
+    is_active       BOOLEAN     COMMENT 'Активен',
     organization_id INTEGER     NOT NULL COMMENT 'ID Организации',
     FOREIGN KEY (organization_id) REFERENCES Organization (id)
 );
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS User
     version         INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
     first_name      VARCHAR(15) NOT NULL COMMENT 'Имя',
     second_name     VARCHAR(15) NOT NULL COMMENT 'Фамилия',
-    middle_name     VARCHAR(15) NOT NULL COMMENT 'Отчество',
+    middle_name     VARCHAR(15) COMMENT 'Отчество',
     position        VARCHAR(20) NOT NULL COMMENT 'Должность',
     phone           VARCHAR(11) NOT NULL COMMENT 'Телефон',
     document_number VARCHAR(10) NOT NULL COMMENT 'Номер документа',

@@ -37,10 +37,10 @@ public class Organization {
     @Column(name = "address", length = 50, nullable = false)
     private String address;
 
-    @Column(name = "phone", length = 11, nullable = false)
+    @Column(name = "phone", length = 11)
     private String phone;
 
-    @Column(name = "isActive", nullable = false)
+    @Column(name = "isActive")
     private Boolean isActive;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
