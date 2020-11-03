@@ -1,12 +1,7 @@
 package com.bell.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "Document")
 public class Document {
@@ -19,11 +14,16 @@ public class Document {
     @Version
     private Integer version;
 
-    @Column(name = "code", length = 2, nullable = false)
-    private String code;
+    @Column(name = "number", length = 10, nullable = false)
+    private String number;
 
-    @Column(name = "name", length = 120, nullable = false)
-    private String name;
+    @Column(name = "date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "document_type_id", nullable = false)
+    private DocumentType documentType;
 
     @OneToOne(mappedBy = "document")
     private User user;
@@ -36,20 +36,28 @@ public class Document {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getNumber() {
+        return number;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public DocumentType getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
     }
 
     public User getUser() {

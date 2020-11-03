@@ -29,15 +29,8 @@ public class User {
     @Column(name = "phone", length = 11, nullable = false)
     private String phone;
 
-    @Column(name = "document_number", length = 10, nullable = false)
-    private String documentNumber;
-
-    @Column(name = "document_date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date documentDate;
-
     @Column(name = "is_identified", nullable = false)
-    private boolean isIdentified;
+    private Boolean isIdentified;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "office_id", nullable = false)
@@ -99,27 +92,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    public Date getDocumentDate() {
-        return documentDate;
-    }
-
-    public void setDocumentDate(Date documentDate) {
-        this.documentDate = documentDate;
-    }
-
-    public boolean isIdentified() {
+    public Boolean isIdentified() {
         return isIdentified;
     }
 
-    public void setIdentified(boolean identified) {
+    public void setIdentified(Boolean identified) {
         isIdentified = identified;
     }
 
