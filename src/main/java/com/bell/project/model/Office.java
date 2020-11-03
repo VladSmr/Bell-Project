@@ -19,7 +19,7 @@ public class Office {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Version
@@ -35,7 +35,7 @@ public class Office {
     private String phone;
 
     @Column(name = "isActive", nullable = false)
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "organization_id", nullable = false)
@@ -76,11 +76,11 @@ public class Office {
         this.phone = phone;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 

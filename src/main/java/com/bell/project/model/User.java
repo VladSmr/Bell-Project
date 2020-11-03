@@ -1,23 +1,14 @@
 package com.bell.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Version
@@ -38,7 +29,14 @@ public class User {
     @Column(name = "phone", length = 11, nullable = false)
     private String phone;
 
-    @Column(name = "isIdentified", nullable = false)
+    @Column(name = "document_number", length = 10, nullable = false)
+    private String documentNumber;
+
+    @Column(name = "document_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date documentDate;
+
+    @Column(name = "is_identified", nullable = false)
     private boolean isIdentified;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -99,6 +97,22 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public Date getDocumentDate() {
+        return documentDate;
+    }
+
+    public void setDocumentDate(Date documentDate) {
+        this.documentDate = documentDate;
     }
 
     public boolean isIdentified() {

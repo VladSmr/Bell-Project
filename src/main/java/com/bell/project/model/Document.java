@@ -7,30 +7,23 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 
 @Entity(name = "Document")
 public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Version
     private Integer version;
 
-    @Column(name = "name", length = 20, nullable = false)
+    @Column(name = "code", length = 2, nullable = false)
+    private String code;
+
+    @Column(name = "name", length = 120, nullable = false)
     private String name;
-
-    @Column(name = "number", length = 3, nullable = false)
-    private String number;
-
-    @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date date;
 
     @OneToOne(mappedBy = "document")
     private User user;
@@ -43,28 +36,20 @@ public class Document {
         this.id = id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public User getUser() {

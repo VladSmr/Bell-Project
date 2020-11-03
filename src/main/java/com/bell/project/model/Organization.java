@@ -16,7 +16,7 @@ public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Version
@@ -29,10 +29,10 @@ public class Organization {
     private String fullName;
 
     @Column(name = "inn", length = 10, nullable = false)
-    private long inn;
+    private Long inn;
 
     @Column(name = "kpp", length = 9, nullable = false)
-    private int kpp;
+    private Long kpp;
 
     @Column(name = "address", length = 50, nullable = false)
     private String address;
@@ -41,7 +41,7 @@ public class Organization {
     private String phone;
 
     @Column(name = "isActive", nullable = false)
-    private boolean isActive;
+    private Boolean isActive;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
     private Set<Office> offices;
@@ -70,19 +70,19 @@ public class Organization {
         this.fullName = fullName;
     }
 
-    public long getInn() {
+    public Long getInn() {
         return inn;
     }
 
-    public void setInn(long inn) {
+    public void setInn(Long inn) {
         this.inn = inn;
     }
 
-    public int getKpp() {
+    public Long getKpp() {
         return kpp;
     }
 
-    public void setKpp(int kpp) {
+    public void setKpp(Long kpp) {
         this.kpp = kpp;
     }
 
@@ -102,11 +102,11 @@ public class Organization {
         this.phone = phone;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
