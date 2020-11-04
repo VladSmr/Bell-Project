@@ -26,13 +26,37 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
-    @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
+    @ApiOperation(value = "Получить организации по имени", httpMethod = "GET")
     @PostMapping("/list/{name}/{inn}/{isActive}")
-    public List<OrganizationView> organization(@PathVariable(name = "name") String name,
+    public List<OrganizationView> organizations(@PathVariable(name = "name") String name,
                                                @PathVariable(name = "inn") Long inn, @PathVariable(name = "isActive") Boolean isActive) {
         return organizationService.getOrganizationByName(name, inn, isActive);
     }
 
+    @ApiOperation(value = "Получить организации по ID", httpMethod = "GET")
+    @PostMapping("/list/{id}")
+    public OrganizationView organization(@PathVariable(name = "id") Long id) {
+        return organizationService.getOrganizationById(id);
+    }
 
+    @ApiOperation(value = "Обновить организацию", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    @PostMapping("/update")
+    public void updateOrganization(@RequestBody OrganizationView organization) {
+        organizationService.updateOrganization(organization);
+    }
+
+    @ApiOperation(value = "Сохранить организацию", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    @PostMapping("/save")
+    public void saveOrganization(@RequestBody OrganizationView organization) {
+        organizationService.addOrganization(organization);
+    }
 
 }
