@@ -46,6 +46,19 @@ public class Organization {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
     private Set<Office> offices;
 
+    public Organization() {
+    }
+
+    public Organization(String name, String fullName, Long inn, Long kpp, String address, String phone, Boolean isActive) {
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
+    }
+
     public Long getId() {
         return id;
     }

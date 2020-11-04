@@ -1,7 +1,16 @@
 package com.bell.project.model;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Version;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
 
 @Entity(name = "User")
 public class User {
@@ -43,6 +52,31 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "nationality_id", nullable = false)
     private Nationality nationality;
+
+    public User() {
+    }
+
+    public User(String firstName, String secondName, String middleName, String position, String phone, Boolean isIdentified) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.phone = phone;
+        this.isIdentified = isIdentified;
+    }
+
+    public User(String firstName, String secondName, String middleName, String position, String phone, Boolean isIdentified,
+                Office office, Document document, Nationality nationality) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.phone = phone;
+        this.isIdentified = isIdentified;
+        this.office = office;
+        this.document = document;
+        this.nationality = nationality;
+    }
 
     public Long getId() {
         return id;
