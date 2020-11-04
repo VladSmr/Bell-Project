@@ -21,7 +21,7 @@ public class Document {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "document_type_id", nullable = false)
     private DocumentType documentType;
 

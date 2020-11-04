@@ -41,7 +41,7 @@ public class Office {
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "office")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "office")
     private Set<User> users;
 
     public Office() {

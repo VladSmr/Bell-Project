@@ -20,7 +20,7 @@ public class DocumentType {
     @Column(name = "code", length = 2, nullable = false)
     private String code;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "documentType")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "documentType")
     private Set<Document> documents;
 
     public Long getId() {

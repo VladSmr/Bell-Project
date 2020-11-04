@@ -28,7 +28,7 @@ public class Nationality {
     @Column(name = "code", length = 3, nullable = false)
     private String code;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "nationality")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nationality")
     private Set<User> users;
 
     public Long getId() {

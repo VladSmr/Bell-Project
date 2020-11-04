@@ -43,7 +43,7 @@ public class Organization {
     @Column(name = "isActive")
     private Boolean isActive;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
     private Set<Office> offices;
 
     public Organization() {
