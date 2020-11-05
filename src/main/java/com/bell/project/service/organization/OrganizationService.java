@@ -1,6 +1,6 @@
 package com.bell.project.service.organization;
 
-import com.bell.project.view.OrganizationView;
+import com.bell.project.view.organization.OrganizationView;
 
 import java.util.List;
 

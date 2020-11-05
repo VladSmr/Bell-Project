@@ -1,8 +1,8 @@
 package com.bell.project.controller.organization;
 
-import com.bell.project.model.Organization;
 import com.bell.project.service.organization.OrganizationService;
-import com.bell.project.view.OrganizationView;
+import com.bell.project.view.organization.OrganizationView;
+import com.bell.project.view.organization.OrganizationViewShort;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -26,15 +26,14 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
-    @ApiOperation(value = "Получить организации по имени", httpMethod = "GET")
-    @PostMapping("/list/{name}/{inn}/{isActive}")
-    public List<OrganizationView> organizations(@PathVariable(name = "name") String name,
-                                               @PathVariable(name = "inn") Long inn, @PathVariable(name = "isActive") Boolean isActive) {
-        return organizationService.getOrganizationByName(name, inn, isActive);
+    @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
+    @PostMapping("/list")
+    public List<OrganizationView> organizations(@RequestParam(value = "organizaton") OrganizationViewShort organization) {
+        return organizationService.getOrganizationByName(organization.name, organization.inn, organization.isActive);
     }
 
     @ApiOperation(value = "Получить организации по ID", httpMethod = "GET")
-    @PostMapping("/list/{id}")
+    @GetMapping("/list/{id}")
     public OrganizationView organization(@PathVariable(name = "id") Long id) {
         return organizationService.getOrganizationById(id);
     }
@@ -58,5 +57,4 @@ public class OrganizationController {
     public void saveOrganization(@RequestBody OrganizationView organization) {
         organizationService.addOrganization(organization);
     }
-
 }

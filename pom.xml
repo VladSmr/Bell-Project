@@ -19,6 +19,7 @@
         <encoding>UTF-8</encoding>
         <swagger.version>2.2.2</swagger.version>
        <orika.mapper.version>1.5.2</orika.mapper.version>
+        <hibernate.version>4.2.10.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -103,6 +104,25 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+            <groupId>org.hibernate.orm.tooling</groupId>
+            <artifactId>hibernate-enhance-maven-plugin</artifactId>
+            <version>5.4.6.Final</version>
+            <executions>
+                <execution>
+                    <configuration>
+                        <failOnError>true</failOnError>
+                        <enableLazyInitialization>true</enableLazyInitialization>
+                        <enableDirtyTracking>true</enableDirtyTracking>
+                        <enableAssociationManagement>true</enableAssociationManagement>
+                    </configuration>
+                    <goals>
+                        <goal>enhance</goal>
+                    </goals>
+                </execution>
+            </executions>
             </plugin>
         </plugins>
     </build>

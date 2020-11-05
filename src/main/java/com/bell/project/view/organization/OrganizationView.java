@@ -1,16 +1,14 @@
-package com.bell.project.view;
+package com.bell.project.view.organization;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Организация")
-public class OrganizationView {
+public class OrganizationView extends OrganizationViewShort {
 
-    @NotEmpty
     @ApiModelProperty(value = "Уникальный идентификатор", hidden = true, example = "1")
     public String id;
 
@@ -40,11 +38,9 @@ public class OrganizationView {
     public String address;
 
     @Size(max = 11)
-    @NotNull(message = "Phone number cannot be null")
     @ApiModelProperty(value = "Номер", example = "88001112233")
     public String phone;
 
-    @NotNull(message = "Active cannot be null")
     @ApiModelProperty(value = "Работает", example = "TRUE")
     public Boolean isActive;
 

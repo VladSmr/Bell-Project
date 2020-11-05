@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -33,20 +32,11 @@ public class OrganizationDaoImpl implements OrganizationDao {
         CriteriaQuery<Organization> criteria = builder.createQuery(Organization.class);
 
         Root<Organization> organization = criteria.from(Organization.class);
-        criteria.where(builder.equal(organization.get("name"), name));
+        criteria.where(builder.equal(organization.get("name"), name),
+                builder.equal(organization.get("inn"), inn),
+                builder.equal(organization.get("isActive"), isActive));
         TypedQuery<Organization> query = em.createQuery(criteria);
-        List<Organization> organizations = query.getResultList();
-        Iterator<Organization> it = organizations.iterator();
-        while (it.hasNext()) {
-            Organization o = it.next();
-            if (inn != null && o.getInn() != inn) {
-                it.remove();
-            }
-            if (isActive != null && o.isActive() != isActive) {
-                it.remove();
-            }
-        }
-        return organizations;
+        return query.getResultList();
     }
 
     @Override
