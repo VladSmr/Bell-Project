@@ -1,6 +1,6 @@
 package com.bell.project.service.documentType;
 
-import com.bell.project.view.DocumentTypeView;
+import com.bell.project.view.documentType.DocumentTypeView;
 
 import java.util.List;
 

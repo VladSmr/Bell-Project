@@ -3,7 +3,7 @@ package com.bell.project.service.documentType;
 import com.bell.project.dao.documentType.DocumentTypeDao;
 import com.bell.project.model.DocumentType;
 import com.bell.project.model.mapper.MapperFacade;
-import com.bell.project.view.DocumentTypeView;
+import com.bell.project.view.documentType.DocumentTypeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
