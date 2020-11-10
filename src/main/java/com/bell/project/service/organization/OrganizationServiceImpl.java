@@ -4,7 +4,6 @@ import com.bell.project.dao.organization.OrganizationDao;
 import com.bell.project.model.Organization;
 import com.bell.project.model.mapper.MapperFacade;
 import com.bell.project.view.organization.OrganizationView;
-import com.bell.project.view.organization.OrganizationViewShort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

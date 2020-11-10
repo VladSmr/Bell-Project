@@ -3,7 +3,8 @@ package com.bell.project.model;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "Document_Type")
+@Entity
+@Table(name = "Document_Type")
 public class DocumentType {
 
     @Id

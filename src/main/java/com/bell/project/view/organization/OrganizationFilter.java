@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@ApiModel(description = "Организация (short version)")
-public class OrganizationViewShort {
+@ApiModel(description = "Фильтр для поиска организации")
+public class OrganizationFilter {
 
     @Size(max = 15)
     @NotEmpty(message = "name cannot be null")

@@ -3,7 +3,7 @@ package com.bell.project.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "Document")
+@Entity
 public class Document {
 
     @Id

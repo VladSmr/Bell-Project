@@ -12,7 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 
-@Entity(name = "User")
+@Entity
 public class User {
 
     @Id

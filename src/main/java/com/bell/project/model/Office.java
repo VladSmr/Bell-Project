@@ -14,7 +14,7 @@ import javax.persistence.FetchType;
 
 import java.util.Set;
 
-@Entity(name = "Office")
+@Entity
 public class Office {
 
     @Id

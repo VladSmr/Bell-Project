@@ -11,7 +11,7 @@ import javax.persistence.FetchType;
 
 import java.util.Set;
 
-@Entity(name = "Organization")
+@Entity
 public class Organization {
 
     @Id
