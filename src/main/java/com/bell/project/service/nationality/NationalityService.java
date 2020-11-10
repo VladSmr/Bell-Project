@@ -1,6 +1,6 @@
 package com.bell.project.service.nationality;
 
-import com.bell.project.view.NationalityView;
+import com.bell.project.view.nationality.NationalityView;
 
 import java.util.List;
 

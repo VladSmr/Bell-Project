@@ -1,7 +1,7 @@
 package com.bell.project.controller.nationality;
 
 import com.bell.project.service.nationality.NationalityService;
-import com.bell.project.view.NationalityView;
+import com.bell.project.view.nationality.NationalityView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

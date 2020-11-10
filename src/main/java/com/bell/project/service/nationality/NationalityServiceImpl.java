@@ -3,7 +3,7 @@ package com.bell.project.service.nationality;
 import com.bell.project.dao.nationality.NationalityDao;
 import com.bell.project.model.Nationality;
 import com.bell.project.model.mapper.MapperFacade;
-import com.bell.project.view.NationalityView;
+import com.bell.project.view.nationality.NationalityView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
