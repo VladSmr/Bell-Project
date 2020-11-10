@@ -26,7 +26,6 @@ public class Document {
 
     @OneToOne(mappedBy = "document")
     @MapsId
-    @JoinColumn(name = "user_id")
     private User user;
 
     public Long getId() {
