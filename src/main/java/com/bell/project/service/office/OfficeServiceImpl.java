@@ -40,15 +40,13 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void addOffice(OfficeView officeView) {
-        Office office = new Office(officeView.name, officeView.address, officeView.phone, officeView.isActive);
-        dao.addOffice(office);
+        dao.addOffice(mapperFacade.map(officeView, Office.class));
     }
 
     @Override
     @Transactional
     public void updateOffice(OfficeView officeView) {
-        Office office = new Office(officeView.id, officeView.name, officeView.address, officeView.phone, officeView.isActive);
-        dao.updateOffice(office);
+        dao.updateOffice(mapperFacade.map(officeView, Office.class));
     }
 
     @Override

@@ -40,17 +40,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional
     public void addOrganization(OrganizationView organizationView) {
-        Organization organization = new Organization(organizationView.name, organizationView.fullName, organizationView.inn,
-                organizationView.kpp, organizationView.address, organizationView.phone, organizationView.isActive);
-        dao.addOrganization(organization);
+        dao.addOrganization(mapperFacade.map(organizationView, Organization.class));
     }
 
     @Override
     @Transactional
     public void updateOrganization(OrganizationView organizationView) {
-        Organization organization = new Organization(organizationView.name, organizationView.fullName, organizationView.inn,
-                organizationView.kpp, organizationView.address, organizationView.phone, organizationView.isActive);
-        dao.updateOrganization(organization);
+        dao.updateOrganization(mapperFacade.map(organizationView, Organization.class));
     }
 
     @Override
