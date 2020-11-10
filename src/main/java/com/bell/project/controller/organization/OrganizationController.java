@@ -29,7 +29,7 @@ public class OrganizationController {
 
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationViewShort> organizations(@RequestParam(value = "organizaton") OrganizationFilter organization) {
+    public List<OrganizationViewShort> organizations(@RequestBody OrganizationFilter organization) {
         return organizationService.getOrganizationByName(organization.name, organization.inn, organization.isActive);
     }
 
