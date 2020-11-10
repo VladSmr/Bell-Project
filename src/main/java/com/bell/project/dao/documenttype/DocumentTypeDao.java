@@ -1,4 +1,4 @@
-package com.bell.project.dao.documentType;
+package com.bell.project.dao.documenttype;
 
 import com.bell.project.model.DocumentType;
 

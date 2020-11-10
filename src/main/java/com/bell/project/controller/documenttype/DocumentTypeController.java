@@ -1,7 +1,7 @@
-package com.bell.project.controller.documentType;
+package com.bell.project.controller.documenttype;
 
-import com.bell.project.service.documentType.DocumentTypeService;
-import com.bell.project.view.documentType.DocumentTypeView;
+import com.bell.project.service.documenttype.DocumentTypeService;
+import com.bell.project.view.documenttype.DocumentTypeView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
