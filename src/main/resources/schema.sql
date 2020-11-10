@@ -36,7 +36,8 @@ COMMENT ON TABLE Document_Type IS 'Тип документа';
 
 CREATE TABLE IF NOT EXISTS Document
 (
-    id               INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
+    user_id          INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+    FOREIGN KEY (user_id) REFERENCES User (id),
     version          INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
     number           VARCHAR(10) NOT NULL COMMENT 'Номер документа',
     date             DATE        NOT NULL COMMENT 'Дата документа',
@@ -66,8 +67,6 @@ CREATE TABLE IF NOT EXISTS User
     is_identified  BOOLEAN     NOT NULL COMMENT 'Идентифицирован',
     office_id      INTEGER     NOT NULL COMMENT 'ID офиса',
     FOREIGN KEY (office_id) REFERENCES Office (id),
-    document_id    INTEGER     NOT NULL COMMENT 'ID документа',
-    FOREIGN KEY (document_id) REFERENCES Document (id),
     nationality_id INTEGER     NOT NULL COMMENT 'ID гражданства',
     FOREIGN KEY (nationality_id) REFERENCES Nationality (id)
 );
