@@ -4,6 +4,7 @@ import com.bell.project.dao.organization.OrganizationDao;
 import com.bell.project.model.Organization;
 import com.bell.project.model.mapper.MapperFacade;
 import com.bell.project.view.organization.OrganizationView;
+import com.bell.project.view.organization.OrganizationViewShort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,9 +32,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationView> getOrganizationByName(String name, Long inn, Boolean isActive){
+    public List<OrganizationViewShort> getOrganizationByName(String name, Long inn, Boolean isActive){
         List<Organization> organization = dao.getOrganizationByName(name, inn, isActive);
-        return mapperFacade.mapAsList(organization, OrganizationView.class);
+        return mapperFacade.mapAsList(organization, OrganizationViewShort.class);
     }
 
     @Override

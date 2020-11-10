@@ -3,6 +3,7 @@ package com.bell.project.controller.organization;
 import com.bell.project.service.organization.OrganizationService;
 import com.bell.project.view.organization.OrganizationView;
 import com.bell.project.view.organization.OrganizationFilter;
+import com.bell.project.view.organization.OrganizationViewShort;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -28,7 +29,7 @@ public class OrganizationController {
 
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationView> organizations(@RequestParam(value = "organizaton") OrganizationFilter organization) {
+    public List<OrganizationViewShort> organizations(@RequestParam(value = "organizaton") OrganizationFilter organization) {
         return organizationService.getOrganizationByName(organization.name, organization.inn, organization.isActive);
     }
 
