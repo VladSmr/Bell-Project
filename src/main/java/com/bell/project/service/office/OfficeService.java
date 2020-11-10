@@ -1,17 +1,16 @@
 package com.bell.project.service.office;
 
-import com.bell.project.view.office.OfficeView;
-import com.bell.project.view.office.OfficeViewShort;
+import com.bell.project.view.office.*;
 
 import java.util.List;
 
 public interface OfficeService {
 
-    OfficeView getOfficeById(Long id);
+    OfficeViewGetById getOfficeById(Long id);
 
-    List<OfficeViewShort> getOffice(Long orgId, String name, String phone, Boolean isActive);
+    List<OfficeViewShort> getOffice(OfficeFilter officeFilter);
 
-    void addOffice(OfficeView office);
+    void addOffice(OfficeViewSave office);
 
     void updateOffice(OfficeView office);
 

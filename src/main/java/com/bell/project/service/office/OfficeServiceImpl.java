@@ -3,8 +3,7 @@ package com.bell.project.service.office;
 import com.bell.project.dao.office.OfficeDao;
 import com.bell.project.model.Office;
 import com.bell.project.model.mapper.MapperFacade;
-import com.bell.project.view.office.OfficeView;
-import com.bell.project.view.office.OfficeViewShort;
+import com.bell.project.view.office.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,21 +24,21 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OfficeViewShort> getOffice(Long orgId, String name, String phone, Boolean isActive) {
-        List<Office> offices = dao.getOffice(orgId, name, phone, isActive);
+    public List<OfficeViewShort> getOffice(OfficeFilter office) {
+        List<Office> offices = dao.getOffice(office.orgId, office.name, office.phone, office.isActive);
         return mapperFacade.mapAsList(offices, OfficeViewShort.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public OfficeView getOfficeById(Long id) {
+    public OfficeViewGetById getOfficeById(Long id) {
         Office office = dao.getOfficeById(id);
-        return mapperFacade.map(office, OfficeView.class);
+        return mapperFacade.map(office, OfficeViewGetById.class);
     }
 
     @Override
     @Transactional
-    public void addOffice(OfficeView officeView) {
+    public void addOffice(OfficeViewSave officeView) {
         dao.addOffice(mapperFacade.map(officeView, Office.class));
     }
 

@@ -1,14 +1,7 @@
 package com.bell.project.controller.office;
 
-
 import com.bell.project.service.office.OfficeService;
-import com.bell.project.service.organization.OrganizationService;
-import com.bell.project.view.office.OfficeFilter;
-import com.bell.project.view.office.OfficeView;
-import com.bell.project.view.office.OfficeViewShort;
-import com.bell.project.view.organization.OrganizationFilter;
-import com.bell.project.view.organization.OrganizationView;
-import com.bell.project.view.organization.OrganizationViewShort;
+import com.bell.project.view.office.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,12 +28,12 @@ public class OfficeController {
     @ApiOperation(value = "Получить офисы по ID организации", httpMethod = "POST")
     @PostMapping("/list")
     public List<OfficeViewShort> offices(@RequestBody OfficeFilter office) {
-        return officeService.getOffice(office.orgId, office.name, office.phone, office.isActive);
+        return officeService.getOffice(office);
     }
 
     @ApiOperation(value = "Получить офис по ID", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OfficeView office(@PathVariable(name = "id") Long id) {
+    public OfficeViewGetById office(@PathVariable(name = "id") Long id) {
         return officeService.getOfficeById(id);
     }
 
@@ -60,7 +53,7 @@ public class OfficeController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
-    public void saveOffice(@RequestBody OfficeView office) {
+    public void saveOffice(@RequestBody OfficeViewSave office) {
         officeService.addOffice(office);
     }
 }
