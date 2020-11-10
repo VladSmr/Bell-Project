@@ -24,4 +24,3 @@ public class DocumentTypeDaoImpl implements DocumentTypeDao {
         return query.getResultList();
     }
 }
-И
