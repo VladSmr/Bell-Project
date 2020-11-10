@@ -7,7 +7,7 @@ import java.util.Date;
 public class Document {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     private Long id;
 
     @Version

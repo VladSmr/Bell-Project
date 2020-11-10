@@ -1,16 +1,6 @@
 package com.bell.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -47,6 +37,7 @@ public class User {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "document_id", nullable = false)
+    @PrimaryKeyJoinColumn
     private Document document;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
