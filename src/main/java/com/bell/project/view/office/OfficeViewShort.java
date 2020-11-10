@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Офис (короткая версия)")
-public class OfficeViewShort extends OfficeFilter {
+public class OfficeViewShort {
 
     @NotEmpty
     @ApiModelProperty(value = "Уникальный идентификатор", hidden = true, example = "1")
