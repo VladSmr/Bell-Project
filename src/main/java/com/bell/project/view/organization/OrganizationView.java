@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Организация")
-public class OrganizationView extends OrganizationFilter {
+public class OrganizationView {
 
     @ApiModelProperty(value = "Уникальный идентификатор", hidden = true, example = "1")
     public String id;
