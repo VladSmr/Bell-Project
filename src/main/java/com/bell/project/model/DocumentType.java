@@ -1,7 +1,6 @@
 package com.bell.project.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "Document_Type")
@@ -20,9 +19,6 @@ public class DocumentType {
 
     @Column(name = "code", length = 2, nullable = false)
     private String code;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "documentType")
-    private Set<Document> documents;
 
     public Long getId() {
         return id;
@@ -48,11 +44,4 @@ public class DocumentType {
         this.code = code;
     }
 
-    public Set<Document> getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(Set<Document> documents) {
-        this.documents = documents;
-    }
 }
