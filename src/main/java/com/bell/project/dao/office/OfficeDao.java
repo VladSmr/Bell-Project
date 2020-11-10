@@ -8,6 +8,8 @@ public interface OfficeDao {
 
     Office getOfficeById(Long id);
 
+    List<Office> getOffice(Long orgId, String name, String phone, Boolean isActive);
+
     void addOffice(Office office);
 
     void updateOffice(Office office);

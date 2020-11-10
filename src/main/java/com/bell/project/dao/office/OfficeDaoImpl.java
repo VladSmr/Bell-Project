@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -24,13 +29,42 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
+    public List<Office> getOffice(Long orgId, String name, String phone, Boolean isActive) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Office> criteria = builder.createQuery(Office.class);
+        Root<Office> office = criteria.from(Office.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (orgId != null) {
+            predicates.add(builder.equal(office.get("organization_id"), orgId));
+        }
+        if (name != null) {
+            predicates.add(builder.equal(office.get("name"), name));
+        }
+        if (phone != null) {
+            predicates.add(builder.equal(office.get("phone"), phone));
+        }
+        if (isActive != null) {
+            predicates.add(builder.equal(office.get("isActive"), isActive));
+        }
+        criteria.select(office).where(predicates.toArray(new Predicate[]{}));
+        TypedQuery<Office> query = em.createQuery(criteria);
+        return query.getResultList();
+    }
+
+    @Override
     public void addOffice(Office office) {
         em.persist(office);
     }
 
     @Override
     public void updateOffice(Office office) {
-        em.merge(office);
+        Office of = em.find(Office.class, office.getId());
+        of.setId(office.getId());
+        of.setName(office.getName());
+        of.setAddress(office.getAddress());
+        of.setPhone(office.getPhone());
+        of.setActive(office.isActive());
     }
 
     @Override
