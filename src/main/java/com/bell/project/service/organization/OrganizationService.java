@@ -9,7 +9,7 @@ public interface OrganizationService {
 
     OrganizationView getOrganizationById(Long id);
 
-    List<OrganizationViewShort> getOrganizationByName(String name, Long inn, Boolean isActive);
+    List<OrganizationViewShort> getOrganization(String name, Long inn, Boolean isActive);
 
     void addOrganization(OrganizationView organization);
 

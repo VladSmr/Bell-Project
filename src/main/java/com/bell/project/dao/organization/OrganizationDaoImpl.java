@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -27,24 +29,22 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> getOrganizationByName(String name, Long inn, Boolean isActive) {
+    public List<Organization> getOrganization(String name, Long inn, Boolean isActive) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteria = builder.createQuery(Organization.class);
-
         Root<Organization> organization = criteria.from(Organization.class);
-        if (inn != null && isActive != null) {
-            criteria.where(builder.equal(organization.get("name"), name),
-                    builder.equal(organization.get("inn"), inn),
-                    builder.equal(organization.get("isActive"), isActive));
-        } else if (inn != null) {
-            criteria.where(builder.equal(organization.get("name"), name),
-                    builder.equal(organization.get("inn"), inn));
-        } else if (isActive != null) {
-            criteria.where(builder.equal(organization.get("name"), name),
-                    builder.equal(organization.get("isActive"), isActive));
-        } else {
-            criteria.where(builder.equal(organization.get("name"), name));
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (name != null) {
+            predicates.add(builder.equal(organization.get("name"), name));
         }
+        if (inn != null) {
+            predicates.add(builder.equal(organization.get("inn"), inn));
+        }
+        if (isActive != null) {
+            predicates.add(builder.equal(organization.get("isActive"), isActive));
+        }
+        criteria.select(organization).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Organization> query = em.createQuery(criteria);
         return query.getResultList();
     }
@@ -56,7 +56,15 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void updateOrganization(Organization organization) {
-        em.merge(organization);
+        Organization org = em.find(Organization.class, organization.getId());
+        org.setId(organization.getId());
+        org.setName(organization.getName());
+        org.setFullName(organization.getFullName());
+        org.setInn(organization.getInn());
+        org.setKpp(organization.getKpp());
+        org.setAddress(organization.getAddress());
+        org.setPhone(organization.getPhone());
+        org.setActive(organization.isActive());
     }
 
     @Override

@@ -30,7 +30,7 @@ public class OrganizationController {
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")
     public List<OrganizationViewShort> organizations(@RequestBody OrganizationFilter organization) {
-        return organizationService.getOrganizationByName(organization.name, organization.inn, organization.isActive);
+        return organizationService.getOrganization(organization.name, organization.inn, organization.isActive);
     }
 
     @ApiOperation(value = "Получить организации по ID", httpMethod = "GET")

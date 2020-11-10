@@ -8,7 +8,7 @@ public interface OrganizationDao {
 
     Organization getOrganizationById(Long id);
 
-    List<Organization> getOrganizationByName(String name, Long inn, Boolean isActive);
+    List<Organization> getOrganization(String name, Long inn, Boolean isActive);
 
     void addOrganization(Organization organization);
 

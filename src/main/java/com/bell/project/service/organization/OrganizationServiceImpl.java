@@ -32,8 +32,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationViewShort> getOrganizationByName(String name, Long inn, Boolean isActive){
-        List<Organization> organization = dao.getOrganizationByName(name, inn, isActive);
+    public List<OrganizationViewShort> getOrganization(String name, Long inn, Boolean isActive){
+        List<Organization> organization = dao.getOrganization(name, inn, isActive);
         return mapperFacade.mapAsList(organization, OrganizationViewShort.class);
     }
 
