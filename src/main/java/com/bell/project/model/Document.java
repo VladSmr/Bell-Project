@@ -7,7 +7,6 @@ import java.util.Date;
 public class Document {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -26,6 +25,7 @@ public class Document {
     private DocumentType documentType;
 
     @OneToOne(mappedBy = "document")
+    @MapsId
     private User user;
 
     public Long getId() {
