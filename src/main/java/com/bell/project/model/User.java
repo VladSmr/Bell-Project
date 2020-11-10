@@ -36,7 +36,6 @@ public class User {
     private Office office;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "document_id", nullable = false)
     @PrimaryKeyJoinColumn
     private Document document;
 
