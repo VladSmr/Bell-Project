@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -57,14 +58,18 @@ public class OrganizationDaoImpl implements OrganizationDao {
     @Override
     public void updateOrganization(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
-        org.setId(organization.getId());
-        org.setName(organization.getName());
-        org.setFullName(organization.getFullName());
-        org.setInn(organization.getInn());
-        org.setKpp(organization.getKpp());
-        org.setAddress(organization.getAddress());
-        org.setPhone(organization.getPhone());
-        org.setActive(organization.isActive());
+        if (org == null) {
+            throw new EntityNotFoundException("Entity with provided ID not found");
+        } else {
+            org.setId(organization.getId());
+            org.setName(organization.getName());
+            org.setFullName(organization.getFullName());
+            org.setInn(organization.getInn());
+            org.setKpp(organization.getKpp());
+            org.setAddress(organization.getAddress());
+            org.setPhone(organization.getPhone());
+            org.setActive(organization.isActive());
+        }
     }
 
     @Override
