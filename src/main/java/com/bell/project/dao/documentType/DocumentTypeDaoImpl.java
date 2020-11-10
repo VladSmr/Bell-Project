@@ -20,7 +20,8 @@ public class DocumentTypeDaoImpl implements DocumentTypeDao {
 
     @Override
     public List<DocumentType> documentTypes() {
-        TypedQuery<DocumentType> query = em.createQuery("SELECT d FROM Document_Type d", DocumentType.class);
+        TypedQuery<DocumentType> query = em.createQuery("SELECT d FROM DocumentType d", DocumentType.class);
         return query.getResultList();
     }
 }
+И
