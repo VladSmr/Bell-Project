@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS Organization
     is_active BOOLEAN COMMENT 'Активен'
 );
 COMMENT ON TABLE Organization IS 'Организация';
+CREATE INDEX organization_inn ON Organization (id);
 
 CREATE TABLE IF NOT EXISTS Office
 (
@@ -24,6 +25,7 @@ CREATE TABLE IF NOT EXISTS Office
     FOREIGN KEY (organization_id) REFERENCES Organization (id)
 );
 COMMENT ON TABLE Office IS 'Офис';
+CREATE INDEX office_org ON Office (organization_id);
 
 CREATE TABLE IF NOT EXISTS Document_Type
 (
@@ -33,6 +35,7 @@ CREATE TABLE IF NOT EXISTS Document_Type
     code    VARCHAR(2)   NOT NULL COMMENT 'Код документа'
 );
 COMMENT ON TABLE Document_Type IS 'Тип документа';
+CREATE INDEX doc_type ON Document_Type (id);
 
 CREATE TABLE IF NOT EXISTS Nationality
 (
@@ -42,6 +45,7 @@ CREATE TABLE IF NOT EXISTS Nationality
     code    VARCHAR(3)  NOT NULL COMMENT 'Код гражданства'
 );
 COMMENT ON TABLE Nationality IS 'Гражданство';
+CREATE INDEX nat_code ON Nationality (id);
 
 CREATE TABLE IF NOT EXISTS User
 (
@@ -59,6 +63,7 @@ CREATE TABLE IF NOT EXISTS User
     FOREIGN KEY (nationality_id) REFERENCES Nationality (id)
 );
 COMMENT ON TABLE User IS 'Работник';
+CREATE INDEX user_off_id ON User (office_id);
 
 CREATE TABLE IF NOT EXISTS Document
 (
@@ -71,3 +76,4 @@ CREATE TABLE IF NOT EXISTS Document
     FOREIGN KEY (document_type_id) REFERENCES Document_Type (id)
 );
 COMMENT ON TABLE Document IS 'Документ';
+CREATE INDEX doc_number ON Document (document_type_id);
