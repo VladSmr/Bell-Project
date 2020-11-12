@@ -1,5 +1,7 @@
 package com.bell.project.model.mapper;
 
+import com.bell.project.model.Office;
+import com.bell.project.view.office.OfficeViewSave;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.beans.factory.FactoryBean;
@@ -10,9 +12,14 @@ public class CustomMapperFactory implements FactoryBean<MapperFactory> {
 
     @Override
     public MapperFactory getObject() {
-        return new DefaultMapperFactory.Builder()
+        MapperFactory factory = new DefaultMapperFactory.Builder()
                 .constructorResolverStrategy(null)
                 .build();
+        factory.classMap(Office.class, OfficeViewSave.class)
+                .field("organization.id", "orgId")
+                .byDefault()
+                .register();
+        return factory;
     }
 
     @Override
