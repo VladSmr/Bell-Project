@@ -31,7 +31,7 @@ public class OfficeViewSave {
     @Override
     public String toString() {
         return "Office: " +
-                "id = " + orgId +
+                "orgId = " + orgId +
                 "; name = " + name +
                 "; address = " + address +
                 "; phone = " + phone +
