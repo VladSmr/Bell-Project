@@ -18,7 +18,7 @@
         <java.version>11</java.version>
         <encoding>UTF-8</encoding>
         <swagger.version>2.2.2</swagger.version>
-       <orika.mapper.version>1.5.2</orika.mapper.version>
+        <orika.mapper.version>1.5.2</orika.mapper.version>
         <hibernate.version>5.4.10.Final</hibernate.version>
     </properties>
 
@@ -36,13 +36,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+            <!--             <exclusions>
+                         <exclusion>
+                               <groupId>org.springframework.boot</groupId>
+                               <artifactId>spring-boot-starter-tomcat</artifactId>
+                           </exclusion>
+                        </exclusions>
+-->     </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -68,12 +68,6 @@
         </dependency>
 
         <!-- модульные и интеграционные тесты -->
- <!--       <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
--->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -107,22 +101,22 @@
             </plugin>
 
             <plugin>
-            <groupId>org.hibernate.orm.tooling</groupId>
-            <artifactId>hibernate-enhance-maven-plugin</artifactId>
-            <version>5.4.6.Final</version>
-            <executions>
-                <execution>
-                    <configuration>
-                        <failOnError>true</failOnError>
-                        <enableLazyInitialization>true</enableLazyInitialization>
-                        <enableDirtyTracking>true</enableDirtyTracking>
-                        <enableAssociationManagement>true</enableAssociationManagement>
-                    </configuration>
-                    <goals>
-                        <goal>enhance</goal>
-                    </goals>
-                </execution>
-            </executions>
+                <groupId>org.hibernate.orm.tooling</groupId>
+                <artifactId>hibernate-enhance-maven-plugin</artifactId>
+                <version>5.4.6.Final</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <failOnError>true</failOnError>
+                            <enableLazyInitialization>true</enableLazyInitialization>
+                            <enableDirtyTracking>true</enableDirtyTracking>
+                            <enableAssociationManagement>true</enableAssociationManagement>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
