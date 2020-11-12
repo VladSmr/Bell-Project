@@ -1,7 +1,7 @@
 package com.bell.project.controller.user;
 
 import com.bell.project.service.user.UserService;
-import com.bell.project.view.UserView;
+import com.bell.project.view.user.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,9 +18,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@Api(value = "PersonController")
+@Api(value = "UserController")
 @RestController
-@RequestMapping(value = "/user", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/user", produces = APPLICATION_JSON_VALUE)
 public class UserController {
 
     private final UserService userService;
@@ -30,20 +30,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation(value = "Добавить нового работника", httpMethod = "POST")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success", response = String.class),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})
-    @PostMapping("/save")
-    public void person(@RequestBody UserView user) {
-        userService.addUser(user);
-    }
-
-    @ApiOperation(value = "Получить список всех людей", httpMethod = "GET")
-    @GetMapping("/list/{id}")
-    public List<UserView> persons(@PathVariable(name = "id") Long id) {
-        return userService.getUsersByOfficeId(id);
+    @ApiOperation(value = "Получить список всех людей", httpMethod = "POST")
+    @PostMapping("/list")
+    public List<UserViewList> users(@RequestBody UserFilter userFilter) {
+        return userService.getUsersByOffice(userFilter);
     }
 
     @ApiOperation(value = "Получить юзера по id", httpMethod = "GET")
@@ -52,9 +42,23 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @ApiOperation(value = "Редактировать юзера по id", httpMethod = "POST")
-    @RequestMapping(value = "/edit/{id}")
-    public void editUser(@PathVariable(name = "id") Long id) {
-        userService.updateUser(userService.getUserById(id));
+    @ApiOperation(value = "Обновить юзера", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    @PostMapping("/update")
+    public void updateOffice(@RequestBody UserViewUpdate user) {
+        userService.updateUser(user);
+    }
+
+    @ApiOperation(value = "Добавить нового работника", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    @PostMapping("/save")
+    public void saveUser(@RequestBody UserViewSave user) {
+        userService.addUser(user);
     }
 }
