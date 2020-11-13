@@ -1,6 +1,7 @@
 package com.bell.project.model.mapper;
 
 import com.bell.project.model.Office;
+import com.bell.project.view.office.OfficeFilter;
 import com.bell.project.view.office.OfficeViewSave;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
