@@ -37,7 +37,7 @@ public class OfficeDaoImpl implements OfficeDao {
         List<Predicate> predicates = new ArrayList<>();
 
         if (orgId != null) {
-            predicates.add(builder.equal(office.get("organization.id"), orgId));
+            predicates.add(builder.equal(office.get("organization"), orgId));
         }
         if (name != null) {
             predicates.add(builder.equal(office.get("name"), name));
@@ -68,7 +68,7 @@ public class OfficeDaoImpl implements OfficeDao {
             of.setName(office.getName());
             of.setAddress(office.getAddress());
             of.setPhone(office.getPhone());
-            of.setActive(office.isActive());
+            of.setIsActive(office.getIsActive());
         }
     }
 
