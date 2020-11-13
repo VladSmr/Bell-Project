@@ -37,7 +37,7 @@ public class OfficeDaoImpl implements OfficeDao {
         List<Predicate> predicates = new ArrayList<>();
 
         if (orgId != null) {
-            predicates.add(builder.equal(office.get("organization_id"), orgId));
+            predicates.add(builder.equal(office.get("organization.id"), orgId));
         }
         if (name != null) {
             predicates.add(builder.equal(office.get("name"), name));
