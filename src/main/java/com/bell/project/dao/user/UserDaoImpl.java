@@ -49,40 +49,39 @@ public class UserDaoImpl implements UserDao {
             us.setPhone(user.getPhone());
             us.setDocument(user.getDocument());  // ???
             us.setNationality(user.getNationality());  // ???
-            us.setIdentified(user.isIdentified());
+            us.setIsIdentified(user.getIsIdentified());
         }
     }
 
     @Override
     public List<User> getUsersByOffice(Long officeId, String name, String lastName, String middleName,
                                        String position, String docCode, String citizenshipCode) {
-
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> user = criteria.from(User.class);
         List<Predicate> predicates = new ArrayList<>();
 
         if (officeId != null) {
-            predicates.add(builder.equal(user.get("office_id"), officeId));
+            predicates.add(builder.equal(user.get("office"), officeId));
         }
         if (name != null) {
-            predicates.add(builder.equal(user.get("first_name"), name));
+            predicates.add(builder.equal(user.get("firstName"), name));
         }
         if (lastName != null) {
-            predicates.add(builder.equal(user.get("last_name"), lastName));
+            predicates.add(builder.equal(user.get("lastName"), lastName));
         }
         if (middleName != null) {
-            predicates.add(builder.equal(user.get("middle_name"), middleName));
+            predicates.add(builder.equal(user.get("middleName"), middleName));
         }
         if (position != null) {
             predicates.add(builder.equal(user.get("position"), position));
         }
-/*        if (docCode != null) {
+        if (docCode != null) {
             predicates.add(builder.equal(user.get("document"), docCode));
         }
         if (citizenshipCode != null) {
-            predicates.add(builder.equal(user.get("citizenship"), citizenshipCode));
-        }*/
+            predicates.add(builder.equal(user.get("nationality"), citizenshipCode));
+        }
         criteria.select(user).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<User> query = em.createQuery(criteria);
         return query.getResultList();
