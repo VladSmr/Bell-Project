@@ -34,7 +34,7 @@ public class Office {
     @Column(name = "phone", length = 11)
     private String phone;
 
-    @Column(name = "isActive")
+    @Column(name = "is_active")
     private Boolean isActive;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})

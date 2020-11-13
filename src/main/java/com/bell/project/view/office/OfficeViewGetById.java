@@ -35,5 +35,4 @@ public class OfficeViewGetById {
                 "; phone = " + phone +
                 "; isActive = " + isActive;
     }
-
 }
