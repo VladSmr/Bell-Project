@@ -1,6 +1,7 @@
 package com.bell.project.dao.office;
 
 import com.bell.project.model.Office;
+import com.bell.project.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -55,6 +56,8 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public void addOffice(Office office) {
+        Organization o = em.getReference(Organization.class, office.getOrganization().getId());
+        office.setOrganization(o);
         em.persist(office);
     }
 
