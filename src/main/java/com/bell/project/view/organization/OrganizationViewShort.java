@@ -13,7 +13,7 @@ public class OrganizationViewShort {
     public String id;
 
     @Size(max = 15)
-    @NotEmpty(message = "name cannot be null")
+//    @NotEmpty(message = "name cannot be null")
     @ApiModelProperty(value = "Название", example = "Oracle")
     public String name;
 

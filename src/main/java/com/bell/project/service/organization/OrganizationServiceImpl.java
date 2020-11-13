@@ -3,9 +3,7 @@ package com.bell.project.service.organization;
 import com.bell.project.dao.organization.OrganizationDao;
 import com.bell.project.model.Organization;
 import com.bell.project.model.mapper.MapperFacade;
-import com.bell.project.view.organization.OrganizationFilter;
-import com.bell.project.view.organization.OrganizationView;
-import com.bell.project.view.organization.OrganizationViewShort;
+import com.bell.project.view.organization.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +24,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public OrganizationView getOrganizationById(Long id) {
+    public OrganizationViewById getOrganizationById(Long id) {
         Organization organization = dao.getOrganizationById(id);
-        return mapperFacade.map(organization, OrganizationView.class);
+        return mapperFacade.map(organization, OrganizationViewById.class);
     }
 
     @Override
@@ -40,20 +38,20 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public void addOrganization(OrganizationView organizationView) {
-        dao.addOrganization(mapperFacade.map(organizationView, Organization.class));
+    public void addOrganization(OrganizationViewSave organizationViewSave) {
+        dao.addOrganization(mapperFacade.map(organizationViewSave, Organization.class));
     }
 
     @Override
     @Transactional
-    public void updateOrganization(OrganizationView organizationView) {
-        dao.updateOrganization(mapperFacade.map(organizationView, Organization.class));
+    public void updateOrganization(OrganizationViewUpdate organizationViewUpdate) {
+        dao.updateOrganization(mapperFacade.map(organizationViewUpdate, Organization.class));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationView> organizations() {
+    public List<OrganizationViewUpdate> organizations() {
         List<Organization> all = dao.organizations();
-        return mapperFacade.mapAsList(all, OrganizationView.class);
+        return mapperFacade.mapAsList(all, OrganizationViewUpdate.class);
     }
 }

@@ -1,9 +1,7 @@
 package com.bell.project.controller.organization;
 
 import com.bell.project.service.organization.OrganizationService;
-import com.bell.project.view.organization.OrganizationView;
-import com.bell.project.view.organization.OrganizationFilter;
-import com.bell.project.view.organization.OrganizationViewShort;
+import com.bell.project.view.organization.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -35,7 +33,7 @@ public class OrganizationController {
 
     @ApiOperation(value = "Получить организации по ID", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OrganizationView organization(@PathVariable(name = "id") Long id) {
+    public OrganizationViewById organization(@PathVariable(name = "id") Long id) {
         return organizationService.getOrganizationById(id);
     }
 
@@ -45,7 +43,7 @@ public class OrganizationController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/update")
-    public void updateOrganization(@RequestBody OrganizationView organization) {
+    public void updateOrganization(@RequestBody OrganizationViewUpdate organization) {
         organizationService.updateOrganization(organization);
     }
 
@@ -55,7 +53,7 @@ public class OrganizationController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
-    public void saveOrganization(@RequestBody OrganizationView organization) {
+    public void saveOrganization(@RequestBody OrganizationViewSave organization) {
         organizationService.addOrganization(organization);
     }
 }

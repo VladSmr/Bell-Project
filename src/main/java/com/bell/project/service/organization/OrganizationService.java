@@ -1,20 +1,18 @@
 package com.bell.project.service.organization;
 
-import com.bell.project.view.organization.OrganizationFilter;
-import com.bell.project.view.organization.OrganizationView;
-import com.bell.project.view.organization.OrganizationViewShort;
+import com.bell.project.view.organization.*;
 
 import java.util.List;
 
 public interface OrganizationService {
 
-    OrganizationView getOrganizationById(Long id);
+    OrganizationViewById getOrganizationById(Long id);
 
     List<OrganizationViewShort> getOrganization(OrganizationFilter organizationFilter);
 
-    void addOrganization(OrganizationView organization);
+    void addOrganization(OrganizationViewSave organization);
 
-    void updateOrganization(OrganizationView organization);
+    void updateOrganization(OrganizationViewUpdate organization);
 
-    List<OrganizationView> organizations();
+    List<OrganizationViewUpdate> organizations();
 }
