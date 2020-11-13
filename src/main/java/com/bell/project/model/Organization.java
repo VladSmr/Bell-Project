@@ -40,7 +40,7 @@ public class Organization {
     @Column(name = "phone", length = 11)
     private String phone;
 
-    @Column(name = "isActive")
+    @Column(name = "is_active")
     private Boolean isActive;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
@@ -115,11 +115,11 @@ public class Organization {
         this.phone = phone;
     }
 
-    public Boolean isActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 

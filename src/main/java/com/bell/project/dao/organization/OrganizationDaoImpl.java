@@ -68,7 +68,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             org.setKpp(organization.getKpp());
             org.setAddress(organization.getAddress());
             org.setPhone(organization.getPhone());
-            org.setActive(organization.isActive());
+            org.setIsActive(organization.getIsActive());
         }
     }
 
