@@ -1,6 +1,6 @@
 package com.bell.project.service.user;
 
-import com.bell.project.view.UserView;
+import com.bell.project.view.user.*;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ public interface UserService {
 
     UserView getUserById(Long id);
 
-    void addUser(UserView user);
+    void addUser(UserViewSave user);
 
-    void updateUser(UserView user);
+    void updateUser(UserViewUpdate user);
 
-    List<UserView> getUsersByOfficeId(Long id);
+    List<UserViewList> getUsersByOffice(UserFilter userFilter);
 }

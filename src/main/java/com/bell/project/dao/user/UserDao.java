@@ -12,5 +12,6 @@ public interface UserDao {
 
     void updateUser(User user);
 
-    List<User> getUsersByOfficeId(Long id);
+    List<User> getUsersByOffice(Long officeId, String name, String lastName, String middleName,
+                                String position, String docCode, String citizenshipCode);
 }
