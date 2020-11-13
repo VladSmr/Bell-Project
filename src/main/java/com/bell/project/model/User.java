@@ -116,11 +116,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Boolean isIdentified() {
+    public Boolean getIsIdentified() {
         return isIdentified;
     }
 
-    public void setIdentified(Boolean identified) {
+    public void setIsIdentified(Boolean identified) {
         isIdentified = identified;
     }
 
