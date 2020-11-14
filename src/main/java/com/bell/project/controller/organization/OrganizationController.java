@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,7 +28,8 @@ public class OrganizationController {
 
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationViewShort> organizations(@RequestBody OrganizationFilter organization) {
+    public List<OrganizationViewShort> organizations(@Valid
+                                                     @RequestBody OrganizationFilter organization) {
         return organizationService.getOrganization(organization);
     }
 
@@ -43,7 +45,8 @@ public class OrganizationController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/update")
-    public void updateOrganization(@RequestBody OrganizationViewUpdate organization) {
+    public void updateOrganization(@Valid
+                                   @RequestBody OrganizationViewUpdate organization) {
         organizationService.updateOrganization(organization);
     }
 
@@ -53,7 +56,8 @@ public class OrganizationController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
-    public void saveOrganization(@RequestBody OrganizationViewSave organization) {
+    public void saveOrganization(@Valid
+                                 @RequestBody OrganizationViewSave organization) {
         organizationService.addOrganization(organization);
     }
 }

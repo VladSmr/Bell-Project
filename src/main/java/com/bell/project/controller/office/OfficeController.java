@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -27,7 +28,8 @@ public class OfficeController {
 
     @ApiOperation(value = "Получить офисы по ID организации", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OfficeViewShort> offices(@RequestBody OfficeFilter office) {
+    public List<OfficeViewShort> offices(@Valid
+                                         @RequestBody OfficeFilter office) {
         return officeService.getOffice(office);
     }
 
@@ -43,7 +45,8 @@ public class OfficeController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/update")
-    public void updateOffice(@RequestBody OfficeView office) {
+    public void updateOffice(@Valid
+                             @RequestBody OfficeView office) {
         officeService.updateOffice(office);
     }
 
@@ -53,7 +56,8 @@ public class OfficeController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
-    public void saveOffice(@RequestBody OfficeViewSave office) {
+    public void saveOffice(@Valid
+                           @RequestBody OfficeViewSave office) {
         officeService.addOffice(office);
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -32,7 +33,8 @@ public class UserController {
 
     @ApiOperation(value = "Получить список всех людей", httpMethod = "POST")
     @PostMapping("/list")
-    public List<UserViewList> users(@RequestBody UserFilter userFilter) {
+    public List<UserViewList> users(@Valid
+                                    @RequestBody UserFilter userFilter) {
         return userService.getUsersByOffice(userFilter);
     }
 
@@ -48,7 +50,8 @@ public class UserController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/update")
-    public void updateOffice(@RequestBody UserViewUpdate user) {
+    public void updateOffice(@Valid
+                             @RequestBody UserViewUpdate user) {
         userService.updateUser(user);
     }
 
@@ -58,7 +61,8 @@ public class UserController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @PostMapping("/save")
-    public void saveUser(@RequestBody UserViewSave user) {
+    public void saveUser(@Valid
+                         @RequestBody UserViewSave user) {
         userService.addUser(user);
     }
 }
