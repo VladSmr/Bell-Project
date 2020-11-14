@@ -94,7 +94,7 @@ public class UserDaoImpl implements UserDao {
             Nationality nat = query2.getSingleResult();
             if (nat != null) {
                 try {
-                    user.setNationality(nat);
+                    us.setNationality(nat);
                 } catch (NoResultException e) {
                     throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
                 }
