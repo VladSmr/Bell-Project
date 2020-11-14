@@ -1,11 +1,12 @@
 package com.bell.project.dao.user;
 
-import com.bell.project.model.User;
+import com.bell.project.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -31,7 +32,34 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addUser(User user) {
+        TypedQuery<Nationality> query = em.createQuery("SELECT n FROM Nationality n WHERE n.code = ?1", Nationality.class);
+        query.setParameter(1, user.getNationality().getCode());
+        try {
+            user.setNationality(query.getSingleResult());
+        } catch (NoResultException e) {
+            throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
+        }
+
+        Office of = em.getReference(Office.class, user.getOffice().getId());
+        user.setOffice(of);
+
+        TypedQuery<DocumentType> query2 = em.createQuery("SELECT d FROM DocumentType d WHERE d.code = ?1", DocumentType.class);
+        query2.setParameter(1, user.getDocument().getDocumentType().getCode());
+        DocumentType docT;
+        try {
+            docT = query2.getSingleResult();
+            user.getDocument().setDocumentType(docT);
+        } catch (NoResultException e) {
+            throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
+        }
+
+        Document doc = user.getDocument();
+        user.setDocument(null);
         em.persist(user);
+
+        user.setDocument(doc);
+        doc.setUser(user);
+        em.persist(user.getDocument());
     }
 
     @Override
