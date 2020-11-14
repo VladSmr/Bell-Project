@@ -42,14 +42,14 @@ public class UserViewUpdate {
 
     @Size(max = 120)
     @ApiModelProperty(value = "Наименование документа", example = "Удостоверение беженца")
-    public String documentName;
+    public String docName;
 
     @Size(max = 10)
     @ApiModelProperty(value = "Номер документа", example = "954762")
-    public String documentNumber;
+    public String docNumber;
 
     @ApiModelProperty(value = "Дата документа", example = "2015-12-17")
-    public Date documentDate;
+    public Date docDate;
 
     @Size(max = 3)
     @ApiModelProperty(value = "Номер Страны", example = "003")
@@ -68,9 +68,9 @@ public class UserViewUpdate {
                 ", middleName='" + middleName + '\'' +
                 ", position='" + position + '\'' +
                 ", phone='" + phone + '\'' +
-                ", documentName='" + documentName + '\'' +
-                ", documentNumber='" + documentNumber + '\'' +
-                ", documentDate=" + documentDate +
+                ", documentName='" + docName + '\'' +
+                ", documentNumber='" + docNumber + '\'' +
+                ", documentDate=" + docDate +
                 ", citizenshipCode='" + citizenshipCode + '\'' +
                 ", isIdentified=" + isIdentified +
                 '}';
