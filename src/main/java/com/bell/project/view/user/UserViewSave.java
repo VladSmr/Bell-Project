@@ -67,6 +67,7 @@ public class UserViewSave {
                 ", middleName='" + middleName + '\'' +
                 ", position='" + position + '\'' +
                 ", phone='" + phone + '\'' +
+                ", docCode='" + docCode + '\'' +
                 ", documentName='" + docName + '\'' +
                 ", documentNumber='" + docNumber + '\'' +
                 ", documentDate=" + docDate +
