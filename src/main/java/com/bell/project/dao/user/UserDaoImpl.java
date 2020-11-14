@@ -68,15 +68,38 @@ public class UserDaoImpl implements UserDao {
         if (us == null) {
             throw new EntityNotFoundException("User with provided ID not found");
         } else {
-            us.setFirstName(user.getFirstName());
-            us.setOffice(user.getOffice());
+            Office of = em.getReference(Office.class, user.getOffice().getId());
+            us.setOffice(of);
+
             us.setFirstName(user.getFirstName());
             us.setSecondName(user.getSecondName());
             us.setMiddleName(user.getMiddleName());
             us.setPosition(user.getPosition());
             us.setPhone(user.getPhone());
-            us.setDocument(user.getDocument());  // ???
-            us.setNationality(user.getNationality());  // ???
+            us.getDocument().setNumber(user.getDocument().getNumber());
+            us.getDocument().setDate(user.getDocument().getDate());
+
+            TypedQuery<DocumentType> query = em.createQuery("SELECT d FROM DocumentType d WHERE d.name = ?1", DocumentType.class);
+            query.setParameter(1, user.getDocument().getDocumentType().getName());
+            DocumentType docT;
+            try {
+                docT = query.getSingleResult();
+                us.getDocument().setDocumentType(docT);
+            } catch (NoResultException e) {
+                throw new RuntimeException("DocumentType with provided name not found. Check the name and try again", e);
+            }
+
+            TypedQuery<Nationality> query2 = em.createQuery("SELECT n FROM Nationality n WHERE n.code = ?1", Nationality.class);
+            query2.setParameter(1, user.getNationality().getCode());
+            Nationality nat = query2.getSingleResult();
+            if (nat != null) {
+                try {
+                    user.setNationality(nat);
+                } catch (NoResultException e) {
+                    throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
+                }
+            }
+
             us.setIsIdentified(user.getIsIdentified());
         }
     }
