@@ -36,6 +36,10 @@ public class UserViewSave {
     @ApiModelProperty(value = "Номер", example = "88001112233")
     public String phone;
 
+    @Size(max = 2)
+    @ApiModelProperty(value = "Код документа", example = "01")
+    public String documentCode;
+
     @Size(max = 120)
     @ApiModelProperty(value = "Наименование документа", example = "Удостоверение беженца")
     public String documentName;
