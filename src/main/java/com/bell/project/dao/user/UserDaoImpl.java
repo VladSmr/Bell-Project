@@ -27,7 +27,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Long id) {
-        return em.find(User.class, id);
+        User user = em.find(User.class, id);
+        if (user == null) {
+            throw new EntityNotFoundException();
+        }
+        return user;
     }
 
     @Override
@@ -135,6 +139,11 @@ public class UserDaoImpl implements UserDao {
         }
         criteria.select(user).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<User> query = em.createQuery(criteria);
-        return query.getResultList();
+        List<User> userList = query.getResultList();
+        if (userList.isEmpty()) {
+            throw new EntityNotFoundException();
+        } else {
+            return userList;
+        }
     }
 }
