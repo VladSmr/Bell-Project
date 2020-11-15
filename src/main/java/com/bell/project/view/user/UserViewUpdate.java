@@ -5,13 +5,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @ApiModel(description = "Фильтр работника для апдейта")
 public class UserViewUpdate {
 
-    @NotEmpty
+    @NotNull
     @ApiModelProperty(value = "Уникальный идентификатор", hidden = true, example = "1")
     public Long id;
 
