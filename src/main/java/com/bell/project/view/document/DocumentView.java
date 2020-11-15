@@ -1,4 +1,4 @@
-package com.bell.project.view;
+package com.bell.project.view.document;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
