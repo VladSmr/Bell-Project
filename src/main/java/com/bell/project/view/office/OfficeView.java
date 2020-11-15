@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @ApiModel(description = "Офис")
 public class OfficeView {
 
-    @NotEmpty
+    @NotNull
     @ApiModelProperty(value = "Уникальный идентификатор", hidden = true, example = "1")
     public Long id;
 

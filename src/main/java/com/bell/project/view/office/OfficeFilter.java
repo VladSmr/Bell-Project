@@ -3,13 +3,13 @@ package com.bell.project.view.office;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Фильтр для поиска офиса")
 public class OfficeFilter {
 
-    @NotEmpty(message = "Organization`s ID cannot be null")
+    @NotNull(message = "Organization`s ID cannot be null")
     @ApiModelProperty(value = "ID организации", example = "1")
     public Long orgId;
 

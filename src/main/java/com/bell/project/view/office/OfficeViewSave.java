@@ -3,13 +3,13 @@ package com.bell.project.view.office;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Офис для сохранения")
 public class OfficeViewSave {
 
-    @NotEmpty
+    @NotNull
     @ApiModelProperty(value = "Уникальный идентификатор организации", hidden = true, example = "1")
     public Long orgId;
 
