@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS Organization
     version   INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
     name      VARCHAR(15) NOT NULL COMMENT 'Название',
     full_name VARCHAR(50) NOT NULL COMMENT 'Полное название',
-    inn       INTEGER     NOT NULL COMMENT 'ИНН',
-    kpp       INTEGER     NOT NULL COMMENT 'КПП',
+    inn       VARCHAR(10) NOT NULL COMMENT 'ИНН',
+    kpp       VARCHAR(9)  NOT NULL COMMENT 'КПП',
     address   VARCHAR(50) NOT NULL COMMENT 'Адрес',
     phone     VARCHAR(11) COMMENT 'Телефон',
     is_active BOOLEAN COMMENT 'Активен'

@@ -1,8 +1,8 @@
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
-            VALUES (1, 0, 'Sber', 'Sberbank', 1234567890, 123456789, 'Moscow, 50', '88001111111', true);
+            VALUES (1, 0, 'Sber', 'Sberbank', '1234567890', '123456789', 'Moscow, 50', '88001111111', true);
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
-            VALUES (2, 0, 'Apple', 'Apple', 0987654321, 987654321, 'Moscow, 10', '88002222222', true);
+            VALUES (2, 0, 'Apple', 'Apple', '0987654321', '987654321', 'Moscow, 10', '88002222222', true);
 
 INSERT INTO Office (id, version, name, address, phone, is_active, organization_id)
             VALUES (1, 0, 'Office', 'Moscow, 100', '88001234567', true, 1);

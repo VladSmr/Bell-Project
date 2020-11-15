@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +27,16 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public Organization getOrganizationById(Long id) {
-        return em.find(Organization.class, id);
+        Organization organization = em.find(Organization.class, id);
+        if (organization == null) {
+            throw new EntityNotFoundException();
+        } else {
+            return organization;
+        }
     }
 
     @Override
-    public List<Organization> getOrganization(String name, Long inn, Boolean isActive) {
+    public List<Organization> getOrganization(String name, String inn, Boolean isActive) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteria = builder.createQuery(Organization.class);
         Root<Organization> organization = criteria.from(Organization.class);
@@ -47,7 +53,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
         }
         criteria.select(organization).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Organization> query = em.createQuery(criteria);
-        return query.getResultList();
+        List<Organization> organizations = query.getResultList();
+        if (organizations.isEmpty()) {
+            throw new EntityNotFoundException();
+        } else {
+            return organizations;
+        }
     }
 
     @Override
@@ -59,7 +70,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public void updateOrganization(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
         if (org == null) {
-            throw new EntityNotFoundException("Entity with provided ID not found");
+            throw new EntityNotFoundException();
         } else {
             org.setId(organization.getId());
             org.setName(organization.getName());

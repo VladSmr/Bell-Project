@@ -19,13 +19,13 @@ public class OrganizationViewById {
     @ApiModelProperty(value = "Полное название", example = "Oracle")
     public String fullName;
 
-    @Size(max = 10)
+    @Size(min = 10, max = 10)
     @ApiModelProperty(value = "ИНН", example = "1234567890")
-    public Long inn;
+    public String inn;
 
-    @Size(max = 9)
+    @Size(min = 9, max = 9)
     @ApiModelProperty(value = "КПП", example = "123456789")
-    public Long kpp;
+    public String kpp;
 
     @Size(max = 50)
     @ApiModelProperty(value = "Адрес", example = "Moscow")

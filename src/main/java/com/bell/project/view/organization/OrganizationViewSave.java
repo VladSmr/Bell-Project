@@ -19,15 +19,13 @@ public class OrganizationViewSave {
     @ApiModelProperty(value = "Полное название", example = "Oracle")
     public String fullName;
 
-    @Size(max = 10)
-    @NotEmpty(message = "inn cannot be null")
+    @Size(min = 10, max = 10)
     @ApiModelProperty(value = "ИНН", example = "1234567890")
-    public Long inn;
+    public String inn;
 
-    @Size(max = 9)
-    @NotEmpty(message = "kpp cannot be null")
+    @Size(min = 9, max = 9)
     @ApiModelProperty(value = "КПП", example = "123456789")
-    public Long kpp;
+    public String kpp;
 
     @Size(max = 50)
     @NotEmpty(message = "Address cannot be null")

@@ -3,20 +3,20 @@ package com.bell.project.view.organization;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @ApiModel(description = "Фильтр для поиска организации")
 public class OrganizationFilter {
 
     @Size(max = 15)
-    @NotEmpty(message = "name cannot be null")
+    @NotBlank(message = "name cannot be null")
     @ApiModelProperty(value = "Название", example = "Oracle")
     public String name;
 
-    @Size(max = 10)
+    @Size(min = 10, max = 10)
     @ApiModelProperty(value = "ИНН", example = "1234567890")
-    public Long inn;
+    public String inn;
 
     @ApiModelProperty(value = "Работает", example = "TRUE")
     public Boolean isActive;
