@@ -27,7 +27,12 @@ public class OfficeDaoImpl implements OfficeDao {
 
     @Override
     public Office getOfficeById(Long id) {
-        return em.find(Office.class, id);
+        Office office = em.find(Office.class, id);
+        if (office == null) {
+            throw new EntityNotFoundException();
+        } else {
+            return office;
+        }
     }
 
     @Override
@@ -51,7 +56,12 @@ public class OfficeDaoImpl implements OfficeDao {
         }
         criteria.select(office).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Office> query = em.createQuery(criteria);
-        return query.getResultList();
+        List<Office> offices = query.getResultList();
+        if (offices.isEmpty()) {
+            throw new EntityNotFoundException();
+        } else {
+            return offices;
+        }
     }
 
     @Override
