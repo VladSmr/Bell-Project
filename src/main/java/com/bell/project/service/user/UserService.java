@@ -1,6 +1,10 @@
 package com.bell.project.service.user;
 
-import com.bell.project.view.user.*;
+import com.bell.project.view.user.UserView;
+import com.bell.project.view.user.UserViewList;
+import com.bell.project.view.user.UserFilter;
+import com.bell.project.view.user.UserViewUpdate;
+import com.bell.project.view.user.UserViewSave;
 
 import java.util.List;
 

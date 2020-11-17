@@ -1,7 +1,11 @@
 package com.bell.project.controller.user;
 
 import com.bell.project.service.user.UserService;
-import com.bell.project.view.user.*;
+import com.bell.project.view.user.UserView;
+import com.bell.project.view.user.UserViewList;
+import com.bell.project.view.user.UserFilter;
+import com.bell.project.view.user.UserViewUpdate;
+import com.bell.project.view.user.UserViewSave;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

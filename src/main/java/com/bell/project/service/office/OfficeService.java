@@ -1,6 +1,10 @@
 package com.bell.project.service.office;
 
-import com.bell.project.view.office.*;
+import com.bell.project.view.office.OfficeView;
+import com.bell.project.view.office.OfficeViewGetById;
+import com.bell.project.view.office.OfficeViewShort;
+import com.bell.project.view.office.OfficeFilter;
+import com.bell.project.view.office.OfficeViewSave;
 
 import java.util.List;
 

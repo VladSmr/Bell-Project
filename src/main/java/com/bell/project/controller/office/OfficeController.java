@@ -1,13 +1,22 @@
 package com.bell.project.controller.office;
 
 import com.bell.project.service.office.OfficeService;
-import com.bell.project.view.office.*;
+import com.bell.project.view.office.OfficeView;
+import com.bell.project.view.office.OfficeViewSave;
+import com.bell.project.view.office.OfficeViewShort;
+import com.bell.project.view.office.OfficeFilter;
+import com.bell.project.view.office.OfficeViewGetById;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.validation.Valid;
 import java.util.List;
