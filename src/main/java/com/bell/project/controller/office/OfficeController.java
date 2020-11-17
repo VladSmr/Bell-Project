@@ -23,6 +23,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Контроллер для сущности Office
+ */
 @Api(value = "OfficeController")
 @RestController
 @RequestMapping(value = "/api/office", produces = APPLICATION_JSON_VALUE)
@@ -35,6 +38,12 @@ public class OfficeController {
         this.officeService = officeService;
     }
 
+    /**
+     * Получить офисы по ID организации
+     *
+     * @param office Объект класса OfficeFilter
+     * @return List<OfficeViewShort>
+     */
     @ApiOperation(value = "Получить офисы по ID организации", httpMethod = "POST")
     @PostMapping("/list")
     public List<OfficeViewShort> offices(@Valid
@@ -42,12 +51,23 @@ public class OfficeController {
         return officeService.getOffice(office);
     }
 
+    /**
+     * Получить офис по ID
+     *
+     * @param id ID офиса
+     * @return Представление оффиса - OfficeViewGetById
+     */
     @ApiOperation(value = "Получить офис по ID", httpMethod = "GET")
     @GetMapping("/{id}")
     public OfficeViewGetById office(@PathVariable(name = "id") Long id) {
         return officeService.getOfficeById(id);
     }
 
+    /**
+     * Update office in DataBase
+     *
+     * @param office Объект класса OfficeView
+     */
     @ApiOperation(value = "Обновить офис", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
@@ -59,6 +79,11 @@ public class OfficeController {
         officeService.updateOffice(office);
     }
 
+    /**
+     * Save office in DataBase
+     *
+     * @param office Объект класса OfficeViewSave
+     */
     @ApiOperation(value = "Сохранить офис", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),

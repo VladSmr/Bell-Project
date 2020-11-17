@@ -13,6 +13,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Контроллер для сущности Nationality
+ */
 @Api(value = "NationalityController")
 @RestController
 @RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
@@ -25,6 +28,11 @@ public class NationalityController {
         this.nationalityService = nationalityService;
     }
 
+    /**
+     * Получить список всех стран
+     *
+     * @return List<NationalityView>
+     */
     @ApiOperation(value = "Получить список всех стран", httpMethod = "GET")
     @GetMapping("/countries")
     public List<NationalityView> nationalities() {

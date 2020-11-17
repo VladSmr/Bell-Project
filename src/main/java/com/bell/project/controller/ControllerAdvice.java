@@ -21,6 +21,9 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 import java.util.UUID;
 
+/**
+ * Класс отлавливает исключения и перезаписывает ответ клиенту в data
+ */
 @RestControllerAdvice
 public class ControllerAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
 
@@ -49,11 +52,27 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler implements 
         }
     }
 
+    /**
+     * @param methodParameter the return type
+     * @param aClass          the selected converter type
+     * @return true if beforeBodyWrite(T, org.springframework.core.MethodParameter, org.springframework.http.MediaType,
+     * java.lang.Class<? extends org.springframework.http.converter.HttpMessageConverter<?>>, org.springframework.http.server.ServerHttpRequest,
+     * org.springframework.http.server.ServerHttpResponse) should be invoked
+     */
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
         return true;
     }
 
+    /**
+     * @param o                  the body to be written
+     * @param methodParameter    the return type of the controller method
+     * @param mediaType          the content type selected through content negotiation
+     * @param aClass             the converter type selected to write to the response
+     * @param serverHttpRequest  the current request
+     * @param serverHttpResponse the current response
+     * @return the body that was passed in or a modified (possibly new) instance
+     */
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType,
                                   Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {

@@ -13,17 +13,31 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+/**
+ * Контроллер для ping
+ */
 @Validated
 @RestController
 @RequestMapping(value = "/", produces = APPLICATION_JSON_VALUE)
 public class PingController {
 
+    /**
+     * Проверка доступности приложения
+     *
+     * @return Строка "pong"
+     */
     @ApiOperation("Проверка доступности приложения")
     @RequestMapping(value = "/ping", method = {GET, POST})
     public String ping() {
         return "pong";
     }
 
+    /**
+     * Тест
+     *
+     * @param test число от 5 до 100
+     * @return Строка "ОК"
+     */
     @GetMapping("/test/{test}")
     public String test(@PathVariable @Size(min = 5, max = 100) String test) {
         return "OK";

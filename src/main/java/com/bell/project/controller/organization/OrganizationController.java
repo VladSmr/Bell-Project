@@ -23,6 +23,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Контроллер для сущности Organization
+ */
 @Api(value = "OrganizationController")
 @RestController
 @RequestMapping(value = "/api/organization", produces = APPLICATION_JSON_VALUE)
@@ -35,6 +38,12 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
+    /**
+     * Получить организации по имени
+     *
+     * @param organization Объект класса OrganizationFilter
+     * @return List<OrganizationViewShort>
+     */
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")
     public List<OrganizationViewShort> organizations(@Valid
@@ -42,12 +51,23 @@ public class OrganizationController {
         return organizationService.getOrganization(organization);
     }
 
+    /**
+     * Получить организации по ID
+     *
+     * @param id ID организации
+     * @return Представление организации - OrganizationViewById
+     */
     @ApiOperation(value = "Получить организации по ID", httpMethod = "GET")
     @GetMapping("/{id}")
     public OrganizationViewById organization(@PathVariable(name = "id") Long id) {
         return organizationService.getOrganizationById(id);
     }
 
+    /**
+     * Update organization in DataBase
+     *
+     * @param organization Объект класса OrganizationViewUpdate
+     */
     @ApiOperation(value = "Обновить организацию", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
@@ -59,6 +79,11 @@ public class OrganizationController {
         organizationService.updateOrganization(organization);
     }
 
+    /**
+     * save organization in DataBase
+     *
+     * @param organization Объект класса OrganizationViewSave
+     */
     @ApiOperation(value = "Сохранить организацию", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),

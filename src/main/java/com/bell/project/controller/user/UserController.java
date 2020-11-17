@@ -23,6 +23,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Контроллер для сущности User
+ */
 @Api(value = "UserController")
 @RestController
 @RequestMapping(value = "/api/user", produces = APPLICATION_JSON_VALUE)
@@ -35,6 +38,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Получить список всех людей по ID офиса
+     *
+     * @param userFilter Объект класса UserFilter
+     * @return List<UserViewList>
+     */
     @ApiOperation(value = "Получить список всех людей", httpMethod = "POST")
     @PostMapping("/list")
     public List<UserViewList> users(@Valid
@@ -42,12 +51,23 @@ public class UserController {
         return userService.getUsersByOffice(userFilter);
     }
 
+    /**
+     * Получить юзера по id
+     *
+     * @param id ID юзера
+     * @return Представление юзера UserView
+     */
     @ApiOperation(value = "Получить юзера по id", httpMethod = "GET")
     @GetMapping("/{id}")
     public UserView user(@PathVariable(name = "id") Long id) {
         return userService.getUserById(id);
     }
 
+    /**
+     * Update user in DataBase
+     *
+     * @param user Представление юзера в UserViewUpdate
+     */
     @ApiOperation(value = "Обновить юзера", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
@@ -59,6 +79,11 @@ public class UserController {
         userService.updateUser(user);
     }
 
+    /**
+     * Save new user in DataBase
+     *
+     * @param user Представление юзера в UserViewSave
+     */
     @ApiOperation(value = "Добавить нового работника", httpMethod = "POST")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
