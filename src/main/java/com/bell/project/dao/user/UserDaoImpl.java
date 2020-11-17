@@ -1,6 +1,10 @@
 package com.bell.project.dao.user;
 
-import com.bell.project.model.*;
+import com.bell.project.model.User;
+import com.bell.project.model.Nationality;
+import com.bell.project.model.Office;
+import com.bell.project.model.DocumentType;
+import com.bell.project.model.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
