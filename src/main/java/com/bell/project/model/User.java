@@ -46,7 +46,7 @@ public class User {
     private String secondName;
 
     /**
-     * Очество юзера
+     * Отчество юзера
      */
     @Column(name = "middle_name", length = 15)
     private String middleName;
