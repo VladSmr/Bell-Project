@@ -11,9 +11,17 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Service;
 
+/**
+ * Маппер между сущностями и их представлением
+ */
 @Service
 public class CustomMapperFactory implements FactoryBean<MapperFactory> {
 
+    /**
+     * Создает объект MapperFactory для преобразования сущностей
+     *
+     * @return MapperFactory
+     */
     @Override
     public MapperFactory getObject() {
         MapperFactory factory = new DefaultMapperFactory.Builder()
@@ -51,11 +59,21 @@ public class CustomMapperFactory implements FactoryBean<MapperFactory> {
         return factory;
     }
 
+    /**
+     * Возвращает MapperFactory.class
+     *
+     * @return Класс MapperFactory
+     */
     @Override
     public Class<?> getObjectType() {
         return MapperFactory.class;
     }
 
+    /**
+     * isSingleton
+     *
+     * @return true
+     */
     @Override
     public boolean isSingleton() {
         return true;
