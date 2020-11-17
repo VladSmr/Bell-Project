@@ -22,9 +22,9 @@ import javax.persistence.NoResultException;
 import java.util.UUID;
 
 @RestControllerAdvice
-public class ControllersAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
+public class ControllerAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
 
-    private static final Logger log = LoggerFactory.getLogger(ControllersAdvice.class);
+    private static final Logger log = LoggerFactory.getLogger(ControllerAdvice.class);
 
     @ExceptionHandler({Exception.class})
     protected ResponseEntity<ErrorView> exception(Exception ex) {
