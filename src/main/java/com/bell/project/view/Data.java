@@ -1,4 +1,4 @@
-package com.bell.project;
+package com.bell.project.view;
 
 /**
  * Класс для представления ответов из контроллеров
