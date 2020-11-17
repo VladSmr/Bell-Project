@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
+import java.util.UUID;
 
 @RestControllerAdvice
 public class ControllersAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
@@ -27,15 +28,16 @@ public class ControllersAdvice extends ResponseEntityExceptionHandler implements
 
     @ExceptionHandler({Exception.class})
     protected ResponseEntity<ErrorView> exception(Exception ex) {
-        log.warn(ex.getMessage());
+        UUID uuid = UUID.randomUUID();
+        log.warn(ex.getMessage() + " " + uuid);
         if (ex.getCause().getClass() == ConstraintViolationException.class) {
-            return new ResponseEntity<>(new ErrorView("Entity with provided ID not found"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ErrorView("Entity with provided ID not found" + " UUID: " + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == EntityNotFoundException.class || ex.getCause().getClass() == NoResultException.class) {
-            return new ResponseEntity<>(new ErrorView("There is no such entity in database"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ErrorView("There is no such entity in database" + " UUID: " + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == MethodArgumentNotValidException.class) {
-            return new ResponseEntity<>(new ErrorView("No valid arguments"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ErrorView("No valid arguments" + " UUID: " + uuid), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(new ErrorView("There is a problem. Try again"), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ErrorView("There is a problem. Try again" + " UUID: " + uuid), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

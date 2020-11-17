@@ -16,6 +16,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao {
             try {
                 user.setNationality(query.getSingleResult());
             } catch (NoResultException e) {
-                log.warn(e.toString());
+                log.warn(e.toString() + " " + UUID.randomUUID());
                 throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
             }
         }
@@ -63,7 +64,7 @@ public class UserDaoImpl implements UserDao {
                 docT = query2.getSingleResult();
                 user.getDocument().setDocumentType(docT);
             } catch (NoResultException e) {
-                log.warn(e.toString());
+                log.warn(e.toString() + " " + UUID.randomUUID());
                 throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
             }
         }
@@ -101,7 +102,7 @@ public class UserDaoImpl implements UserDao {
                 docT = query.getSingleResult();
                 us.getDocument().setDocumentType(docT);
             } catch (NoResultException e) {
-                log.warn(e.toString());
+                log.warn(e.toString() + " " + UUID.randomUUID());
                 throw new RuntimeException("DocumentType with provided name not found. Check the name and try again", e);
             }
 
@@ -112,7 +113,7 @@ public class UserDaoImpl implements UserDao {
                 try {
                     us.setNationality(nat);
                 } catch (NoResultException e) {
-                    log.warn(e.toString());
+                    log.warn(e.toString() + " " + UUID.randomUUID());
                     throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
                 }
             }
