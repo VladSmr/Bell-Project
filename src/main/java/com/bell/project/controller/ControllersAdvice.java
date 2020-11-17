@@ -28,23 +28,22 @@ public class ControllersAdvice extends ResponseEntityExceptionHandler implements
 
     @ExceptionHandler({Exception.class})
     protected ResponseEntity<ErrorView> exception(Exception ex) {
-
-        String constraintViolationException = "Entity with provided ID not found. UUID: ";
-        String noEntity = "There is no such entity in database. UUID: ";
-        String invalidArg = "No valid arguments. UUID: ";
-        String internalError = "There is a problem. Try again. UUID: ";
         UUID uuid = UUID.randomUUID();
 
         if (ex.getCause().getClass() == ConstraintViolationException.class) {
+            String constraintViolationException = "Entity with provided ID not found. UUID: ";
             log.warn(constraintViolationException + uuid, ex);
             return new ResponseEntity<>(new ErrorView(constraintViolationException + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == EntityNotFoundException.class || ex.getCause().getClass() == NoResultException.class) {
+            String noEntity = "There is no such entity in database. UUID: ";
             log.warn(noEntity + uuid, ex);
             return new ResponseEntity<>(new ErrorView(noEntity + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == MethodArgumentNotValidException.class) {
+            String invalidArg = "No valid arguments. UUID: ";
             log.warn(invalidArg + uuid, ex);
             return new ResponseEntity<>(new ErrorView(invalidArg + uuid), HttpStatus.BAD_REQUEST);
         } else {
+            String internalError = "There is a problem. Try again. UUID: ";
             log.error(internalError + uuid, ex);
             return new ResponseEntity<>(new ErrorView(internalError + uuid), HttpStatus.INTERNAL_SERVER_ERROR);
         }
