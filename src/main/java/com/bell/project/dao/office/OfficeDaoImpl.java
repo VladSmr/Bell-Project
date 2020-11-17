@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link OfficeDao}
  */
 @Repository
 public class OfficeDaoImpl implements OfficeDao {

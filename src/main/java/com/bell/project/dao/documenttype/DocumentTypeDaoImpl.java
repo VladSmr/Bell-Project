@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link DocumentTypeDao}
  */
 @Repository
 public class DocumentTypeDaoImpl implements DocumentTypeDao {

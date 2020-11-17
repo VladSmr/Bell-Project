@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link DocumentService}
  */
 @Service
 public class DocumentServiceImpl implements DocumentService {

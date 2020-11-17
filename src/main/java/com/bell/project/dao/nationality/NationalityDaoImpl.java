@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link NationalityDao}
  */
 @Repository
 public class NationalityDaoImpl implements NationalityDao {

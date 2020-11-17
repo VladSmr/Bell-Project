@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link OrganizationService}
  */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {

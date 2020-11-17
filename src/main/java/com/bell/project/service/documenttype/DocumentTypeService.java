@@ -12,7 +12,7 @@ public interface DocumentTypeService {
     /**
      * Получить список типов документов
      *
-     * @return {@Document}
+     * @return List<DocumentTypeView>
      */
     List<DocumentTypeView> documentTypes();
 }

@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link UserDao}
  */
 @Repository
 public class UserDaoImpl implements UserDao {

@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link OrganizationDao}
  */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {

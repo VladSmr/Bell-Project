@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * {@inheritDoc}
+ * {@link OfficeService}
  */
 @Service
 public class OfficeServiceImpl implements OfficeService {
