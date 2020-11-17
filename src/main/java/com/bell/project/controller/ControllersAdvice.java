@@ -3,12 +3,15 @@ package com.bell.project.controller;
 import com.bell.project.Data;
 import com.bell.project.view.ErrorView;
 import org.hibernate.exception.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
@@ -20,14 +23,19 @@ import javax.persistence.NoResultException;
 @RestControllerAdvice
 public class ControllersAdvice extends ResponseEntityExceptionHandler implements ResponseBodyAdvice<Object> {
 
+    private static final Logger log = LoggerFactory.getLogger(ControllersAdvice.class);
+
     @ExceptionHandler({Exception.class})
     protected ResponseEntity<ErrorView> exception(Exception ex) {
+        log.warn(ex.getMessage());
         if (ex.getCause().getClass() == ConstraintViolationException.class) {
             return new ResponseEntity<>(new ErrorView("Entity with provided ID not found"), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == EntityNotFoundException.class || ex.getCause().getClass() == NoResultException.class) {
             return new ResponseEntity<>(new ErrorView("There is no such entity in database"), HttpStatus.NOT_FOUND);
+        } else if (ex.getCause().getClass() == MethodArgumentNotValidException.class) {
+            return new ResponseEntity<>(new ErrorView("No valid arguments"), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(new ErrorView("There is exception " + ex), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ErrorView("There is a problem. Try again"), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
