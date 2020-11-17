@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class NationalityServiceImpl implements NationalityService {
 
@@ -22,6 +25,9 @@ public class NationalityServiceImpl implements NationalityService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<NationalityView> nationalities() {

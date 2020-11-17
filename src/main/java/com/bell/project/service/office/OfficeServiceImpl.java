@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
@@ -26,6 +29,9 @@ public class OfficeServiceImpl implements OfficeService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<OfficeViewShort> getOffice(OfficeFilter office) {
@@ -33,6 +39,9 @@ public class OfficeServiceImpl implements OfficeService {
         return mapperFacade.mapAsList(offices, OfficeViewShort.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public OfficeViewGetById getOfficeById(Long id) {
@@ -40,18 +49,27 @@ public class OfficeServiceImpl implements OfficeService {
         return mapperFacade.map(office, OfficeViewGetById.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void addOffice(OfficeViewSave officeView) {
         dao.addOffice(mapperFacade.map(officeView, Office.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void updateOffice(OfficeView officeView) {
         dao.updateOffice(mapperFacade.map(officeView, Office.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<OfficeView> offices() {

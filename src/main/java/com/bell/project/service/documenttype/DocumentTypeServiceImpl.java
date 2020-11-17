@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class DocumentTypeServiceImpl implements DocumentTypeService {
 
@@ -21,6 +24,9 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<DocumentTypeView> documentTypes() {
         List<DocumentType> all = dao.documentTypes();

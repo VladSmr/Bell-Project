@@ -5,9 +5,8 @@ import com.bell.project.view.nationality.NationalityView;
 import java.util.List;
 
 /**
- * Сервис
+ * Сервис для сущности Nationality
  */
-
 public interface NationalityService {
 
     /**

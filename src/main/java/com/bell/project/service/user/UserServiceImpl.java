@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,24 +29,36 @@ public class UserServiceImpl implements UserService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public UserView getUserById(Long id) {
         return mapperFacade.map(dao.getUserById(id), UserView.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void addUser(UserViewSave user) {
         dao.addUser(mapperFacade.map(user, User.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void updateUser(UserViewUpdate userView) {
         dao.updateUser(mapperFacade.map(userView, User.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<UserViewList> getUsersByOffice(UserFilter user) {

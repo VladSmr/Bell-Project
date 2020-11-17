@@ -4,10 +4,13 @@ import com.bell.project.view.documenttype.DocumentTypeView;
 
 import java.util.List;
 
+/**
+ * Сервис для сущности DocumentType
+ */
 public interface DocumentTypeService {
 
     /**
-     * Получить список документов
+     * Получить список типов документов
      *
      * @return {@Document}
      */

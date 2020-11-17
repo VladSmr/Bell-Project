@@ -1,5 +1,9 @@
 package com.bell.project;
 
+/**
+ * Класс для представления ответов из контроллеров
+ * @param <T> Тип возвращаемого объекта
+ */
 public class Data<T> {
     private T data;
 

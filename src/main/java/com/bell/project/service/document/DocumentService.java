@@ -2,13 +2,11 @@ package com.bell.project.service.document;
 
 import com.bell.project.view.document.DocumentView;
 
-
 import java.util.List;
 
 /**
- * Сервис
+ * Сервис для сущности Document
  */
-
 public interface DocumentService {
 
     /**

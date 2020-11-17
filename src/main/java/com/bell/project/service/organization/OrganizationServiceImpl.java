@@ -14,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
@@ -26,6 +29,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public OrganizationViewById getOrganizationById(Long id) {
@@ -33,25 +39,37 @@ public class OrganizationServiceImpl implements OrganizationService {
         return mapperFacade.map(organization, OrganizationViewById.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationViewShort> getOrganization(OrganizationFilter org){
+    public List<OrganizationViewShort> getOrganization(OrganizationFilter org) {
         List<Organization> organization = dao.getOrganization(org.name, org.inn, org.isActive);
         return mapperFacade.mapAsList(organization, OrganizationViewShort.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void addOrganization(OrganizationViewSave organizationViewSave) {
         dao.addOrganization(mapperFacade.map(organizationViewSave, Organization.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void updateOrganization(OrganizationViewUpdate organizationViewUpdate) {
         dao.updateOrganization(mapperFacade.map(organizationViewUpdate, Organization.class));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationViewUpdate> organizations() {
