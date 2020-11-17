@@ -34,9 +34,9 @@ public class UserDaoImpl implements UserDao {
     public User getUserById(Long id) {
         User user = em.find(User.class, id);
         if (user == null) {
+            log.warn("user with ID " + " not found");
             throw new EntityNotFoundException();
         }
-        log.info(user.toString());
         return user;
     }
 
@@ -46,35 +46,43 @@ public class UserDaoImpl implements UserDao {
             TypedQuery<Nationality> query = em.createQuery("SELECT n FROM Nationality n WHERE n.code = ?1", Nationality.class);
             query.setParameter(1, user.getNationality().getCode());
             try {
+                log.info("Поиск страны по коду " + user.getNationality().getCode());
                 user.setNationality(query.getSingleResult());
+                log.info("User: " + user.toString());
             } catch (NoResultException e) {
-                log.warn(e.toString() + " " + UUID.randomUUID());
+                log.warn("Nationality with code " + user.getNationality().getCode() + " not found");
                 throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
             }
         }
 
+        log.info("Поиск офиса с ID " + user.getOffice().getId());
         Office of = em.getReference(Office.class, user.getOffice().getId());
         user.setOffice(of);
+        log.info("User: " + user.toString());
 
         if (user.getDocument().getDocumentType().getCode() != null) {
             TypedQuery<DocumentType> query2 = em.createQuery("SELECT d FROM DocumentType d WHERE d.code = ?1", DocumentType.class);
             query2.setParameter(1, user.getDocument().getDocumentType().getCode());
             DocumentType docT;
             try {
+                log.info("Поиск типа документа по коду " + user.getDocument().getDocumentType().getCode());
                 docT = query2.getSingleResult();
                 user.getDocument().setDocumentType(docT);
+                log.info("User: " + user.toString());
             } catch (NoResultException e) {
-                log.warn(e.toString() + " " + UUID.randomUUID());
+                log.warn("Document with code " + user.getDocument().getDocumentType().getCode() + " not found");
                 throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
             }
         }
-        log.info(user.toString());
+        log.info("User: " + user.toString());
         Document doc = user.getDocument();
         user.setDocument(null);
+        log.info("User after setDocument(null): " + user.toString());
         em.persist(user);
 
         user.setDocument(doc);
         doc.setUser(user);
+        log.info("User after setDocument: " + user.toString());
         em.persist(user.getDocument());
     }
 
@@ -82,10 +90,13 @@ public class UserDaoImpl implements UserDao {
     public void updateUser(User user) {
         User us = em.find(User.class, user.getId());
         if (us == null) {
+            log.warn("user with ID " + user.getId() + " not found");
             throw new EntityNotFoundException("User with provided ID not found");
         } else {
             Office of = em.getReference(Office.class, user.getOffice().getId());
+            log.info("Office with ID: " + user.getOffice().getId() + " - " + of.toString());
             us.setOffice(of);
+            log.info("User after setOffice: " + us.toString());
 
             us.setFirstName(user.getFirstName());
             us.setSecondName(user.getSecondName());
@@ -94,15 +105,18 @@ public class UserDaoImpl implements UserDao {
             us.setPhone(user.getPhone());
             us.getDocument().setNumber(user.getDocument().getNumber());
             us.getDocument().setDate(user.getDocument().getDate());
+            log.info("User: " + us.toString());
 
             TypedQuery<DocumentType> query = em.createQuery("SELECT d FROM DocumentType d WHERE d.name = ?1", DocumentType.class);
             query.setParameter(1, user.getDocument().getDocumentType().getName());
             DocumentType docT;
             try {
+                log.info("Looking for document type with name: " + user.getDocument().getDocumentType().getName());
                 docT = query.getSingleResult();
                 us.getDocument().setDocumentType(docT);
+                log.info("Document type found. User: " + us.toString());
             } catch (NoResultException e) {
-                log.warn(e.toString() + " " + UUID.randomUUID());
+                log.warn("Document type not found. Name: " + user.getDocument().getDocumentType().getName());
                 throw new RuntimeException("DocumentType with provided name not found. Check the name and try again", e);
             }
 
@@ -110,15 +124,17 @@ public class UserDaoImpl implements UserDao {
             query2.setParameter(1, user.getNationality().getCode());
             Nationality nat = query2.getSingleResult();
             if (nat != null) {
+                log.info("Nationality with code " + user.getNationality().getCode() + " is: " + nat.toString());
                 try {
                     us.setNationality(nat);
+                    log.info("User: " + us.toString());
                 } catch (NoResultException e) {
-                    log.warn(e.toString() + " " + UUID.randomUUID());
+                    log.warn("No result setting nationality: " + nat.toString());
                     throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
                 }
             }
             us.setIsIdentified(user.getIsIdentified());
-            log.info(us.toString());
+            log.info("User: " + us.toString());
         }
     }
 
@@ -154,10 +170,11 @@ public class UserDaoImpl implements UserDao {
         criteria.select(user).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<User> query = em.createQuery(criteria);
         List<User> userList = query.getResultList();
-        log.info(userList.toString());
         if (userList.isEmpty()) {
+            log.warn("Users not found");
             throw new EntityNotFoundException();
         } else {
+            log.info("Users: " + userList.toString());
             return userList;
         }
     }
