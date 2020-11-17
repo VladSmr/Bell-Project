@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class DocumentTypeDaoImpl implements DocumentTypeDao {
 
@@ -21,6 +24,9 @@ public class DocumentTypeDaoImpl implements DocumentTypeDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<DocumentType> documentTypes() {
         TypedQuery<DocumentType> query = em.createQuery("SELECT d FROM DocumentType d", DocumentType.class);

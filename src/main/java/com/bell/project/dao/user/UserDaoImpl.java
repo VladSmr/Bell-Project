@@ -21,6 +21,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -33,6 +36,9 @@ public class UserDaoImpl implements UserDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getUserById(Long id) {
         User user = em.find(User.class, id);
@@ -43,6 +49,9 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addUser(User user) {
         if (user.getNationality() != null) {
@@ -89,6 +98,9 @@ public class UserDaoImpl implements UserDao {
         em.persist(user.getDocument());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateUser(User user) {
         User us = em.find(User.class, user.getId());
@@ -141,6 +153,9 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> getUsersByOffice(Long officeId, String name, String lastName, String middleName,
                                        String position, String docCode, String citizenshipCode) {

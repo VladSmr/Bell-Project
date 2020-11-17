@@ -4,7 +4,14 @@ import com.bell.project.model.Nationality;
 
 import java.util.List;
 
+/**
+ * ДАО сущности Nationality
+ */
 public interface NationalityDao {
 
+    /**
+     * Получить все страны
+     * @return List<Nationality>
+     */
     List<Nationality> nationalities();
 }

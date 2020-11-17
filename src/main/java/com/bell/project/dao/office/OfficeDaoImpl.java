@@ -17,6 +17,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class OfficeDaoImpl implements OfficeDao {
 
@@ -28,6 +31,9 @@ public class OfficeDaoImpl implements OfficeDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office getOfficeById(Long id) {
         Office office = em.find(Office.class, id);
@@ -38,6 +44,9 @@ public class OfficeDaoImpl implements OfficeDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Office> getOffice(Long orgId, String name, String phone, Boolean isActive) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -68,6 +77,9 @@ public class OfficeDaoImpl implements OfficeDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addOffice(Office office) {
         Organization o = em.getReference(Organization.class, office.getOrganization().getId());
@@ -76,6 +88,9 @@ public class OfficeDaoImpl implements OfficeDao {
         em.persist(office);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateOffice(Office office) {
         Office of = em.find(Office.class, office.getId());
@@ -91,6 +106,9 @@ public class OfficeDaoImpl implements OfficeDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Office> offices() {
         TypedQuery<Office> query = em.createQuery("SELECT o FROM Office o", Office.class);

@@ -16,6 +16,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
@@ -27,6 +30,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Organization getOrganizationById(Long id) {
         Organization organization = em.find(Organization.class, id);
@@ -38,6 +44,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Organization> getOrganization(String name, String inn, Boolean isActive) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -65,12 +74,18 @@ public class OrganizationDaoImpl implements OrganizationDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addOrganization(Organization organization) {
         log.info("Organization: " + organization.toString());
         em.persist(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateOrganization(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
@@ -90,6 +105,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Organization> organizations() {
         TypedQuery<Organization> query = em.createQuery("SELECT o FROM Organization o", Organization.class);

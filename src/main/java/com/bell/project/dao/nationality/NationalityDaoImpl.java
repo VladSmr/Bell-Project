@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class NationalityDaoImpl implements NationalityDao {
 
@@ -21,6 +24,9 @@ public class NationalityDaoImpl implements NationalityDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Nationality> nationalities() {
         TypedQuery<Nationality> query = em.createQuery("SELECT n FROM Nationality n", Nationality.class);
