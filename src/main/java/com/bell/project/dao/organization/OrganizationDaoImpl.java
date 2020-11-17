@@ -1,6 +1,8 @@
 package com.bell.project.dao.organization;
 
 import com.bell.project.model.Organization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +13,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
+    private static final Logger log = LoggerFactory.getLogger(OrganizationDaoImpl.class);
     private final EntityManager em;
 
     @Autowired
@@ -54,6 +56,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
         criteria.select(organization).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Organization> query = em.createQuery(criteria);
         List<Organization> organizations = query.getResultList();
+        log.info(organizations.toString());
         if (organizations.isEmpty()) {
             throw new EntityNotFoundException();
         } else {
@@ -63,6 +66,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void addOrganization(Organization organization) {
+        log.info(organization.toString());
         em.persist(organization);
     }
 

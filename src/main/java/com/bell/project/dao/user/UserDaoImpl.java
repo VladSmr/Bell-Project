@@ -1,6 +1,8 @@
 package com.bell.project.dao.user;
 
 import com.bell.project.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,8 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+    private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+
     private final EntityManager em;
 
     @Autowired
@@ -31,6 +35,7 @@ public class UserDaoImpl implements UserDao {
         if (user == null) {
             throw new EntityNotFoundException();
         }
+        log.info(user.toString());
         return user;
     }
 
@@ -42,6 +47,7 @@ public class UserDaoImpl implements UserDao {
             try {
                 user.setNationality(query.getSingleResult());
             } catch (NoResultException e) {
+                log.warn(e.toString());
                 throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
             }
         }
@@ -57,10 +63,11 @@ public class UserDaoImpl implements UserDao {
                 docT = query2.getSingleResult();
                 user.getDocument().setDocumentType(docT);
             } catch (NoResultException e) {
+                log.warn(e.toString());
                 throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
             }
         }
-
+        log.info(user.toString());
         Document doc = user.getDocument();
         user.setDocument(null);
         em.persist(user);
@@ -94,6 +101,7 @@ public class UserDaoImpl implements UserDao {
                 docT = query.getSingleResult();
                 us.getDocument().setDocumentType(docT);
             } catch (NoResultException e) {
+                log.warn(e.toString());
                 throw new RuntimeException("DocumentType with provided name not found. Check the name and try again", e);
             }
 
@@ -104,10 +112,12 @@ public class UserDaoImpl implements UserDao {
                 try {
                     us.setNationality(nat);
                 } catch (NoResultException e) {
+                    log.warn(e.toString());
                     throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
                 }
             }
             us.setIsIdentified(user.getIsIdentified());
+            log.info(us.toString());
         }
     }
 
@@ -143,6 +153,7 @@ public class UserDaoImpl implements UserDao {
         criteria.select(user).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<User> query = em.createQuery(criteria);
         List<User> userList = query.getResultList();
+        log.info(userList.toString());
         if (userList.isEmpty()) {
             throw new EntityNotFoundException();
         } else {

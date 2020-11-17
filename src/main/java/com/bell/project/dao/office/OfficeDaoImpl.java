@@ -2,6 +2,8 @@ package com.bell.project.dao.office;
 
 import com.bell.project.model.Office;
 import com.bell.project.model.Organization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,7 @@ import java.util.List;
 @Repository
 public class OfficeDaoImpl implements OfficeDao {
 
+    private static final Logger log = LoggerFactory.getLogger(OfficeDaoImpl.class);
     private final EntityManager em;
 
     @Autowired
@@ -57,6 +60,7 @@ public class OfficeDaoImpl implements OfficeDao {
         criteria.select(office).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Office> query = em.createQuery(criteria);
         List<Office> offices = query.getResultList();
+        log.info(offices.toString());
         if (offices.isEmpty()) {
             throw new EntityNotFoundException();
         } else {
@@ -68,6 +72,7 @@ public class OfficeDaoImpl implements OfficeDao {
     public void addOffice(Office office) {
         Organization o = em.getReference(Organization.class, office.getOrganization().getId());
         office.setOrganization(o);
+        log.info(office.toString());
         em.persist(office);
     }
 
