@@ -36,25 +36,29 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addUser(User user) {
-        TypedQuery<Nationality> query = em.createQuery("SELECT n FROM Nationality n WHERE n.code = ?1", Nationality.class);
-        query.setParameter(1, user.getNationality().getCode());
-        try {
-            user.setNationality(query.getSingleResult());
-        } catch (NoResultException e) {
-            throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
+        if (user.getNationality() != null) {
+            TypedQuery<Nationality> query = em.createQuery("SELECT n FROM Nationality n WHERE n.code = ?1", Nationality.class);
+            query.setParameter(1, user.getNationality().getCode());
+            try {
+                user.setNationality(query.getSingleResult());
+            } catch (NoResultException e) {
+                throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
+            }
         }
 
         Office of = em.getReference(Office.class, user.getOffice().getId());
         user.setOffice(of);
 
-        TypedQuery<DocumentType> query2 = em.createQuery("SELECT d FROM DocumentType d WHERE d.code = ?1", DocumentType.class);
-        query2.setParameter(1, user.getDocument().getDocumentType().getCode());
-        DocumentType docT;
-        try {
-            docT = query2.getSingleResult();
-            user.getDocument().setDocumentType(docT);
-        } catch (NoResultException e) {
-            throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
+        if (user.getDocument().getDocumentType().getCode() != null) {
+            TypedQuery<DocumentType> query2 = em.createQuery("SELECT d FROM DocumentType d WHERE d.code = ?1", DocumentType.class);
+            query2.setParameter(1, user.getDocument().getDocumentType().getCode());
+            DocumentType docT;
+            try {
+                docT = query2.getSingleResult();
+                user.getDocument().setDocumentType(docT);
+            } catch (NoResultException e) {
+                throw new RuntimeException("Document with provided code not found. Check the code and try again", e);
+            }
         }
 
         Document doc = user.getDocument();
@@ -103,7 +107,6 @@ public class UserDaoImpl implements UserDao {
                     throw new RuntimeException("Nationality with provided code not found. Check the code and try again", e);
                 }
             }
-
             us.setIsIdentified(user.getIsIdentified());
         }
     }
