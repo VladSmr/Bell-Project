@@ -60,7 +60,7 @@ public class OfficeDaoImpl implements OfficeDao {
         criteria.select(office).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Office> query = em.createQuery(criteria);
         List<Office> offices = query.getResultList();
-        log.info(offices.toString());
+        log.info("Offices: " + offices.toString());
         if (offices.isEmpty()) {
             throw new EntityNotFoundException();
         } else {
@@ -72,7 +72,7 @@ public class OfficeDaoImpl implements OfficeDao {
     public void addOffice(Office office) {
         Organization o = em.getReference(Organization.class, office.getOrganization().getId());
         office.setOrganization(o);
-        log.info(office.toString());
+        log.info("Office " + office.toString());
         em.persist(office);
     }
 
@@ -80,6 +80,7 @@ public class OfficeDaoImpl implements OfficeDao {
     public void updateOffice(Office office) {
         Office of = em.find(Office.class, office.getId());
         if (of == null) {
+            log.warn("Office not found. ID - " + office.getId());
             throw new EntityNotFoundException("Office with provided ID not found");
         } else {
             of.setId(office.getId());

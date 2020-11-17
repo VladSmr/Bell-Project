@@ -31,6 +31,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public Organization getOrganizationById(Long id) {
         Organization organization = em.find(Organization.class, id);
         if (organization == null) {
+            log.warn("Organization not found. ID: " + id);
             throw new EntityNotFoundException();
         } else {
             return organization;
@@ -56,8 +57,8 @@ public class OrganizationDaoImpl implements OrganizationDao {
         criteria.select(organization).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Organization> query = em.createQuery(criteria);
         List<Organization> organizations = query.getResultList();
-        log.info(organizations.toString());
         if (organizations.isEmpty()) {
+            log.warn("Organizations not found");
             throw new EntityNotFoundException();
         } else {
             return organizations;
@@ -66,7 +67,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void addOrganization(Organization organization) {
-        log.info(organization.toString());
+        log.info("Organization: " + organization.toString());
         em.persist(organization);
     }
 
@@ -74,6 +75,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public void updateOrganization(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
         if (org == null) {
+            log.warn("Organization not found. ID: " + organization.getId());
             throw new EntityNotFoundException();
         } else {
             org.setId(organization.getId());
@@ -84,6 +86,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             org.setAddress(organization.getAddress());
             org.setPhone(organization.getPhone());
             org.setIsActive(organization.getIsActive());
+            log.info("Organization updated. Organization: " + org.toString());
         }
     }
 
