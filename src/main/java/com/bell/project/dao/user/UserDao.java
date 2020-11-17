@@ -41,7 +41,7 @@ public interface UserDao {
      * @param position        Должность юзера
      * @param docCode         Код типа документа юзера
      * @param citizenshipCode Код страны юзера
-     * @return List<User>
+     * @return List of Users
      */
     List<User> getUsersByOffice(Long officeId, String name, String lastName, String middleName,
                                 String position, String docCode, String citizenshipCode);

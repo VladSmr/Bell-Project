@@ -12,7 +12,7 @@ public interface NationalityService {
     /**
      * Получить список гражданств
      *
-     * @return {@Nationality}
+     * @return List of NationalityView
      */
     List<NationalityView> nationalities();
 }

@@ -31,7 +31,7 @@ public class NationalityController {
     /**
      * Получить список всех стран
      *
-     * @return List<NationalityView>
+     * @return List of NationalityView
      */
     @ApiOperation(value = "Получить список всех стран", httpMethod = "GET")
     @GetMapping("/countries")

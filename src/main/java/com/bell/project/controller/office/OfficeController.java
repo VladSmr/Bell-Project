@@ -42,7 +42,7 @@ public class OfficeController {
      * Получить офисы по ID организации
      *
      * @param office Объект класса OfficeFilter
-     * @return List<OfficeViewShort>
+     * @return List of OfficeViewShort
      */
     @ApiOperation(value = "Получить офисы по ID организации", httpMethod = "POST")
     @PostMapping("/list")

@@ -11,7 +11,7 @@ public interface DocumentDao {
 
     /**
      * Получить все документы
-     * @return List<Document>
+     * @return List of Documents
      */
     List<Document> documents();
 }

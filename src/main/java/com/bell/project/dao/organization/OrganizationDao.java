@@ -23,7 +23,7 @@ public interface OrganizationDao {
      * @param name     Название
      * @param inn      ИНН
      * @param isActive Активность
-     * @return List<Organization>
+     * @return List of Organizations
      */
     List<Organization> getOrganization(String name, String inn, Boolean isActive);
 
@@ -44,7 +44,7 @@ public interface OrganizationDao {
     /**
      * Получить все организации
      *
-     * @return List<Organization>
+     * @return List of Organizations
      */
     List<Organization> organizations();
 }

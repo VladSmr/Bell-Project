@@ -42,7 +42,7 @@ public class OrganizationController {
      * Получить организации по имени
      *
      * @param organization Объект класса OrganizationFilter
-     * @return List<OrganizationViewShort>
+     * @return List of OrganizationViewShort
      */
     @ApiOperation(value = "Получить организации по имени", httpMethod = "POST")
     @PostMapping("/list")

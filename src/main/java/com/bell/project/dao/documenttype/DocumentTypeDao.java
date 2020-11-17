@@ -11,7 +11,7 @@ public interface DocumentTypeDao {
 
     /**
      * Получить все типы документов
-     * @return List<DocumentType>
+     * @return List of DocumentType
      */
     List<DocumentType> documentTypes();
 }

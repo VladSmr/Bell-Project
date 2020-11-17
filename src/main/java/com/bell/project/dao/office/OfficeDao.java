@@ -24,7 +24,7 @@ public interface OfficeDao {
      * @param name     Название офиса
      * @param phone    Телефон офиса
      * @param isActive Активность офиса
-     * @return List<Office>
+     * @return List of Offices
      */
     List<Office> getOffice(Long orgId, String name, String phone, Boolean isActive);
 
@@ -45,7 +45,7 @@ public interface OfficeDao {
     /**
      * Получить все офисы
      *
-     * @return List<Office>
+     * @return List of Offices
      */
     List<Office> offices();
 }

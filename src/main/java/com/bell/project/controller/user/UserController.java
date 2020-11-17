@@ -42,7 +42,7 @@ public class UserController {
      * Получить список всех людей по ID офиса
      *
      * @param userFilter Объект класса UserFilter
-     * @return List<UserViewList>
+     * @return List of UserViewList
      */
     @ApiOperation(value = "Получить список всех людей", httpMethod = "POST")
     @PostMapping("/list")

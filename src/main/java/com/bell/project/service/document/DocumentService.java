@@ -12,7 +12,7 @@ public interface DocumentService {
     /**
      * Получить список документов
      *
-     * @return {@Document}
+     * @return List of Documents
      */
     List<DocumentView> documents();
 }

@@ -56,7 +56,7 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler implements 
      * @param methodParameter the return type
      * @param aClass          the selected converter type
      * @return true if beforeBodyWrite(T, org.springframework.core.MethodParameter, org.springframework.http.MediaType,
-     * java.lang.Class<? extends org.springframework.http.converter.HttpMessageConverter<?>>, org.springframework.http.server.ServerHttpRequest,
+     * java.lang.Class ? extends org.springframework.http.converter.HttpMessageConverter>, org.springframework.http.server.ServerHttpRequest,
      * org.springframework.http.server.ServerHttpResponse) should be invoked
      */
     @Override

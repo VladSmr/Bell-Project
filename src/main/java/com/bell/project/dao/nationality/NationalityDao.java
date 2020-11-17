@@ -11,7 +11,7 @@ public interface NationalityDao {
 
     /**
      * Получить все страны
-     * @return List<Nationality>
+     * @return List of Nationalities
      */
     List<Nationality> nationalities();
 }

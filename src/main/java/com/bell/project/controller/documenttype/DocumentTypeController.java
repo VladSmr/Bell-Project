@@ -31,7 +31,7 @@ public class DocumentTypeController {
     /**
      * Получить список всех документов
      *
-     * @return List<DocumentTypeView>
+     * @return List of DocumentTypeView
      */
     @ApiOperation(value = "Получить список всех документов", httpMethod = "GET")
     @GetMapping("/docs")
