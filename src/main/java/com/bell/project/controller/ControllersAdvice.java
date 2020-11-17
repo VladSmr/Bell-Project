@@ -28,16 +28,25 @@ public class ControllersAdvice extends ResponseEntityExceptionHandler implements
 
     @ExceptionHandler({Exception.class})
     protected ResponseEntity<ErrorView> exception(Exception ex) {
+
+        String constraintViolationException = "Entity with provided ID not found. UUID: ";
+        String noEntity = "There is no such entity in database. UUID: ";
+        String invalidArg = "No valid arguments. UUID: ";
+        String internalError = "There is a problem. Try again. UUID: ";
         UUID uuid = UUID.randomUUID();
-        log.warn(ex.getMessage() + " " + uuid);
+
         if (ex.getCause().getClass() == ConstraintViolationException.class) {
-            return new ResponseEntity<>(new ErrorView("Entity with provided ID not found" + " UUID: " + uuid), HttpStatus.NOT_FOUND);
+            log.warn(constraintViolationException + uuid, ex);
+            return new ResponseEntity<>(new ErrorView(constraintViolationException + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == EntityNotFoundException.class || ex.getCause().getClass() == NoResultException.class) {
-            return new ResponseEntity<>(new ErrorView("There is no such entity in database" + " UUID: " + uuid), HttpStatus.NOT_FOUND);
+            log.warn(noEntity + uuid, ex);
+            return new ResponseEntity<>(new ErrorView(noEntity + uuid), HttpStatus.NOT_FOUND);
         } else if (ex.getCause().getClass() == MethodArgumentNotValidException.class) {
-            return new ResponseEntity<>(new ErrorView("No valid arguments" + " UUID: " + uuid), HttpStatus.BAD_REQUEST);
+            log.warn(invalidArg + uuid, ex);
+            return new ResponseEntity<>(new ErrorView(invalidArg + uuid), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(new ErrorView("There is a problem. Try again" + " UUID: " + uuid), HttpStatus.INTERNAL_SERVER_ERROR);
+            log.error(internalError + uuid, ex);
+            return new ResponseEntity<>(new ErrorView(internalError + uuid), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
