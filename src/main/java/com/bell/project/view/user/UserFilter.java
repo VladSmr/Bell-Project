@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Фильтр юзера для поиска по ID офиса
+ * Фильтр для поиска юзера
  */
 @ApiModel(description = "Фильтр Работника")
 public class UserFilter {

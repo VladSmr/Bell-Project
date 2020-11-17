@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Фильтр для сущности офис для поиска по ID организации
+ * Фильтр для сущности офис для поиска по ID организации, названии, телефону и активности
  */
 @ApiModel(description = "Фильтр для поиска офиса")
 public class OfficeFilter {

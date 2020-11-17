@@ -1,6 +1,6 @@
 package com.bell.project.controller;
 
-import com.bell.project.Data;
+import com.bell.project.view.Data;
 import com.bell.project.view.ErrorView;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
@@ -53,11 +53,7 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler implements 
     }
 
     /**
-     * @param methodParameter the return type
-     * @param aClass          the selected converter type
-     * @return true if beforeBodyWrite(T, org.springframework.core.MethodParameter, org.springframework.http.MediaType,
-     * java.lang.Class ? extends org.springframework.http.converter.HttpMessageConverter>, org.springframework.http.server.ServerHttpRequest,
-     * org.springframework.http.server.ServerHttpResponse) should be invoked
+     * {@inheritDoc}
      */
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
@@ -65,13 +61,7 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler implements 
     }
 
     /**
-     * @param o                  the body to be written
-     * @param methodParameter    the return type of the controller method
-     * @param mediaType          the content type selected through content negotiation
-     * @param aClass             the converter type selected to write to the response
-     * @param serverHttpRequest  the current request
-     * @param serverHttpResponse the current response
-     * @return the body that was passed in or a modified (possibly new) instance
+     * {@inheritDoc}
      */
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType,
