@@ -13,71 +13,82 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+/**
+ * Сущность юзер (работник)
+ */
 @Entity
 public class User {
 
+    /**
+     * ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Version
+     */
     @Version
     private Integer version;
 
+    /**
+     * Имя юзера
+     */
     @Column(name = "first_name", length = 15, nullable = false)
     private String firstName;
 
+    /**
+     * Фамилия юзера
+     */
     @Column(name = "second_name", length = 15, nullable = false)
     private String secondName;
 
+    /**
+     * Очество юзера
+     */
     @Column(name = "middle_name", length = 15)
     private String middleName;
 
+    /**
+     * Должность юзера
+     */
     @Column(name = "position", length = 20, nullable = false)
     private String position;
 
+    /**
+     * Номер телефона юзера
+     */
     @Column(name = "phone", length = 11, nullable = false)
     private String phone;
 
+    /**
+     * Идентифицирован
+     */
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
 
+    /**
+     * Связь юзера с офисом
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "office_id", nullable = false)
     private Office office;
 
+    /**
+     * Связь юзера с документом
+     */
     @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @PrimaryKeyJoinColumn
     private Document document;
 
+    /**
+     * Связь юзера с гражданством
+     */
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "nationality_id", nullable = false)
     private Nationality nationality;
-
-    public User() {
-    }
-
-    public User(String firstName, String secondName, String middleName, String position, String phone, Boolean isIdentified) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.middleName = middleName;
-        this.position = position;
-        this.phone = phone;
-        this.isIdentified = isIdentified;
-    }
-
-    public User(String firstName, String secondName, String middleName, String position, String phone, Boolean isIdentified,
-                Office office, Document document, Nationality nationality) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.middleName = middleName;
-        this.position = position;
-        this.phone = phone;
-        this.isIdentified = isIdentified;
-        this.office = office;
-        this.document = document;
-        this.nationality = nationality;
-    }
 
     public Long getId() {
         return id;

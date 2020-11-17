@@ -11,23 +11,41 @@ import javax.persistence.FetchType;
 
 import java.util.Set;
 
+/**
+ * Сущность граждансвто
+ */
 @Entity
 public class Nationality {
 
+    /**
+     * ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Version
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название страны
+     */
     @Column(name = "name", length = 20, nullable = false)
     private String name;
 
+    /**
+     * Код страны
+     */
     @Column(name = "code", length = 3, nullable = false)
     private String code;
 
+    /**
+     * Связь с юзерами
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "nationality")
     private Set<User> users;
 

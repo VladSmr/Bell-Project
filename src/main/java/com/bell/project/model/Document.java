@@ -14,27 +14,48 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.util.Date;
 
+/**
+ * Сущность Документ
+ */
 @Entity
 public class Document {
 
+    /**
+     * ID
+     */
     @Id
     @Column(name = "user_id")
     private Long id;
 
+    /**
+     * Version
+     */
     @Version
     private Integer version;
 
+    /**
+     * Номер документа
+     */
     @Column(name = "number", length = 10, nullable = false)
     private String number;
 
+    /**
+     * Дата документа
+     */
     @Column(name = "date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    /**
+     * Связь с типом документа
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "document_type_id", nullable = false)
     private DocumentType documentType;
 
+    /**
+     * Связь с юзером
+     */
     @OneToOne(mappedBy = "document")
     @MapsId
     private User user;

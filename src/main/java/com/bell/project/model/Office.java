@@ -14,53 +14,62 @@ import javax.persistence.FetchType;
 
 import java.util.Set;
 
+/**
+ * Сущность офис
+ */
 @Entity
 public class Office {
 
+    /**
+     * ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Version
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название офиса
+     */
     @Column(name = "name", length = 15, nullable = false)
     private String name;
 
+    /**
+     * Адрес офиса
+     */
     @Column(name = "address", length = 50, nullable = false)
     private String address;
 
+    /**
+     * Номер телефона офиса
+     */
     @Column(name = "phone", length = 11)
     private String phone;
 
+    /**
+     * Активность офиса
+     */
     @Column(name = "is_active")
     private Boolean isActive;
 
+    /**
+     * Связь офиса с организацией
+     */
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
+    /**
+     * Связь офиса с юзерами
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "office")
     private Set<User> users;
-
-    public Office() {
-    }
-
-    public Office(String name, String address, String phone, Boolean isActive) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.isActive = isActive;
-    }
-
-    public Office(Long id, String name, String address, String phone, Boolean isActive) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.isActive = isActive;
-    }
 
     public Long getId() {
         return id;

@@ -8,21 +8,36 @@ import javax.persistence.Table;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 
+/**
+ * Сущность Тип Документа
+ */
 @Entity
 @Table(name = "Document_Type")
 public class DocumentType {
 
+    /**
+     * ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Version
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название типа документа
+     */
     @Column(name = "name", length = 120, nullable = false)
     private String name;
 
+    /**
+     * Код типа документа
+     */
     @Column(name = "code", length = 2, nullable = false)
     private String code;
 
