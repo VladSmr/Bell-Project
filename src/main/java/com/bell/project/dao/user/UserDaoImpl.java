@@ -158,7 +158,7 @@ public class UserDaoImpl implements UserDao {
      * {@inheritDoc}
      */
     @Override
-    public List<User> getUsersByOffice(Long officeId, String name, String lastName, String middleName,
+    public List<User> getUsersByOffice(Long officeId, String firstName, String secondName, String middleName,
                                        String position, String docCode, String citizenshipCode) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
@@ -168,11 +168,11 @@ public class UserDaoImpl implements UserDao {
         if (officeId != null) {
             predicates.add(builder.equal(user.get("office"), officeId));
         }
-        if (name != null) {
-            predicates.add(builder.equal(user.get("firstName"), name));
+        if (firstName != null) {
+            predicates.add(builder.equal(user.get("firstName"), firstName));
         }
-        if (lastName != null) {
-            predicates.add(builder.equal(user.get("lastName"), lastName));
+        if (secondName != null) {
+            predicates.add(builder.equal(user.get("secondName"), secondName));
         }
         if (middleName != null) {
             predicates.add(builder.equal(user.get("middleName"), middleName));
