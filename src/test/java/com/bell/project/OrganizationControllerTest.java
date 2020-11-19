@@ -96,22 +96,22 @@ public class OrganizationControllerTest {
     @Test
     public void updateOrganization() throws Exception {
         mockMvc.perform(
-                get("/api/organization/1")
+                get("/api/organization/2")
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.id").value(1))
+                .andExpect(jsonPath("$.data.id").value(2))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.data.name").value("Sber"))
-                .andExpect(jsonPath("$.data.fullName").value("Sberbank"))
-                .andExpect(jsonPath("$.data.inn").value("1234567890"))
-                .andExpect(jsonPath("$.data.kpp").value("123456789"))
-                .andExpect(jsonPath("$.data.address").value("Moscow, 50"))
-                .andExpect(jsonPath("$.data.phone").value("88001111111"))
+                .andExpect(jsonPath("$.data.name").value("Apple"))
+                .andExpect(jsonPath("$.data.fullName").value("Apple"))
+                .andExpect(jsonPath("$.data.inn").value("0987654321"))
+                .andExpect(jsonPath("$.data.kpp").value("987654321"))
+                .andExpect(jsonPath("$.data.address").value("Moscow, 10"))
+                .andExpect(jsonPath("$.data.phone").value("88002222222"))
                 .andExpect(jsonPath("$.data.isActive").value(TRUE));
 
         OrganizationViewUpdate or = new OrganizationViewUpdate();
-        or.id = "1";
+        or.id = "2";
         or.name = "Aq";
         or.fullName = "Aqua";
         or.inn = "3216549870";
@@ -127,11 +127,11 @@ public class OrganizationControllerTest {
                 .andExpect(status().isOk());
 
         mockMvc.perform(
-                get("/api/organization/1")
+                get("/api/organization/2")
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.id").value(1))
+                .andExpect(jsonPath("$.data.id").value(2))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.data.name").value(or.name))
                 .andExpect(jsonPath("$.data.fullName").value(or.fullName))
