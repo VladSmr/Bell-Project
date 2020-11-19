@@ -181,10 +181,10 @@ public class UserDaoImpl implements UserDao {
             predicates.add(builder.equal(user.get("position"), position));
         }
         if (docCode != null) {
-            predicates.add(builder.equal(user.get("document"), docCode));
+            predicates.add(builder.equal(user.get("document").get("documentType").get("code"), docCode));
         }
         if (citizenshipCode != null) {
-            predicates.add(builder.equal(user.get("nationality"), citizenshipCode));
+            predicates.add(builder.equal(user.get("nationality").get("code"), citizenshipCode));
         }
         criteria.select(user).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<User> query = em.createQuery(criteria);
