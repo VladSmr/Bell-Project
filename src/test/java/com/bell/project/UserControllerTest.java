@@ -123,26 +123,26 @@ public class UserControllerTest {
     @Test
     public void updateUser() throws Exception {
         mockMvc.perform(
-                get("/api/user/1")
+                get("/api/user/2")
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.id").value(1))
+                .andExpect(jsonPath("$.data.id").value(2))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.data.firstName").value("John"))
-                .andExpect(jsonPath("$.data.secondName").value("Smith"))
-                .andExpect(jsonPath("$.data.middleName").value("JS"))
+                .andExpect(jsonPath("$.data.firstName").value("Bob"))
+                .andExpect(jsonPath("$.data.secondName").value("Key"))
+                .andExpect(jsonPath("$.data.middleName").value("BK"))
                 .andExpect(jsonPath("$.data.position").value("Worker"))
-                .andExpect(jsonPath("$.data.phone").value("5551100"))
-                .andExpect(jsonPath("$.data.documentName").value("Паспорт гражданина Российской Федерации"))
-                .andExpect(jsonPath("$.data.documentNumber").value("1234567890"))
-                .andExpect(jsonPath("$.data.documentDate").value("2015-12-17"))
-                .andExpect(jsonPath("$.data.citizenshipName").value("Spain"))
-                .andExpect(jsonPath("$.data.citizenshipCode").value("007"))
+                .andExpect(jsonPath("$.data.phone").value("5551122"))
+                .andExpect(jsonPath("$.data.documentName").value("Свидетельство о рождении"))
+                .andExpect(jsonPath("$.data.documentNumber").value("0987654321"))
+                .andExpect(jsonPath("$.data.documentDate").value("2010-12-17"))
+                .andExpect(jsonPath("$.data.citizenshipName").value("Russia"))
+                .andExpect(jsonPath("$.data.citizenshipCode").value("002"))
                 .andExpect(jsonPath("$.data.isIdentified").value(TRUE));
 
         UserViewUpdate user = new UserViewUpdate();
-        user.id = 1L;
+        user.id = 2L;
         user.officeId = 1L;
         user.firstName = "Joe";
         user.secondName = "Smi";
@@ -164,11 +164,11 @@ public class UserControllerTest {
                 .andExpect(status().isOk());
 
         mockMvc.perform(
-                get("/api/user/1")
+                get("/api/user/2")
                         .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.id").value(1))
+                .andExpect(jsonPath("$.data.id").value(2))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.data.firstName").value(user.firstName))
                 .andExpect(jsonPath("$.data.secondName").value(user.secondName))
