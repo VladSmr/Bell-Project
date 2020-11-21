@@ -54,421 +54,421 @@ Ok->Open as Project
 
 **Ответ сервера на запрос в форме:**
 
-{“data”:{ //то, что в параметре out } }
+    {“data”:{ //то, что в параметре out } }
 
 В случае ошибки:
 
-{“error”:” текст ошибки” }
+    {“error”:” текст ошибки” }
 
 
 1. api/organization/list
 
 In (фильтр):
 
-{
+    {
 
-  “name”:””, //обязательный параметр
+    “name”:””, //обязательный параметр
   
-  “inn”:””,
+    “inn”:””,
   
-  “isActive”:””
-}
+    “isActive”:””
+    }
 
 Out:
 
-[
+    [
 
-  {
+      {
   
-    “id”:””,
+      “id”:””,
     
-    “name”:””,
+      “name”:””,
     
-    “isActive”:”true”
+      “isActive”:”true”
     
-  },
+      },
   
-  ...
+      ...
   
-]
+    ]
 
 
 2. api/organization/{id}
 
 Out:
 
-{
+    {
 
-  “id”:””,
+      “id”:””,
   
-  “name”:””,
+      “name”:””,
   
-  “fullName”:””,
+      “fullName”:””,
   
-  “inn”:””,
+      “inn”:””,
   
-  “kpp”:””,
+      “kpp”:””,
   
-  “address”:””,
+      “address”:””,
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true”
+      “isActive”:”true”
   
-}
+    }
 
 
 3. api/organization/update
 
 In:
 
-{
+    {
 
-  “id”:””, //обязательный параметр
+      “id”:””, //обязательный параметр
   
-  “name”:””, //обязательный параметр
+      “name”:””, //обязательный параметр
   
-  “fullName”:””, //обязательный параметр
+      “fullName”:””, //обязательный параметр
   
-  “inn”:””, //обязательный параметр
+      “inn”:””, //обязательный параметр
   
-  “kpp”:””,  //обязательный параметр
+      “kpp”:””,  //обязательный параметр
   
-  “address”:””, //обязательный параметр
+      “address”:””, //обязательный параметр
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true”
+      “isActive”:”true”
   
-}
+    }
 
 Out:
 
-{
+    {
 
-    “result”:”success”
+        “result”:”success”
     
-}
+    }
 
 
 4. api/organization/save
 
 In:
 
-{
+    {
 
-  “name”:””, //обязательный параметр
+      “name”:””, //обязательный параметр
   
-  “fullName”:””, //обязательный параметр
+      “fullName”:””, //обязательный параметр
   
-  “inn”:””, //обязательный параметр
+      “inn”:””, //обязательный параметр
   
-  “kpp”:””, //обязательный параметр
+      “kpp”:””, //обязательный параметр
   
-  “address”:””, //обязательный параметр
+      “address”:””, //обязательный параметр
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true”
+      “isActive”:”true”
   
-}
+    }
 
 Out:
 
-{
+    {
 
     “result”:”success”
     
-}
+    }
 
 
 5. api/office/list
 
 In (фильтр):
 
-{
+    {
 
-  “orgId”:””, //обязательный параметр
+      “orgId”:””, //обязательный параметр
   
-  “name”:””,
+      “name”:””,
   
-  “phone”:””,
+      “phone”:””,
   
-  “isActive” 
+      “isActive” 
   
-}
+    }
 
 Out:
 
-[
+    [
 
-  {
+      {
   
-    “id”:””,
+        “id”:””,
     
-    “name”:””,
+        “name”:””,
     
-    “isActive”:”true”
+        “isActive”:”true”
     
-  },
+      },
   
-  ...
+      ...
   
-]
+    ]
 
 
 6. api/office/{id}
 
 Out:
 
-{
+    {
 
-  “id”:””,
+      “id”:””,
   
-  “name”:””,
+      “name”:””,
   
-  “address”:””,
+      “address”:””,
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true”
+      “isActive”:”true”
   
-}
+    }
 
 
 7. api/office/update
 
 In:
 
-{
+    {
 
-  “id”:””, //обязательный параметр
+      “id”:””, //обязательный параметр
   
-  “name”:””, //обязательный параметр
+      “name”:””, //обязательный параметр
   
-  “address”:””, //обязательный параметр
+      “address”:””, //обязательный параметр
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true” //пример
+      “isActive”:”true” //пример
   
-}
+    }
 
 Out:
 
-{
+    {
 
     “result”:”success”
     
-}
+    }
 
 
 8. api/office/save
 
 In:
 
-{
+    {
 
-  “orgId”:””, //обязательный параметр
+      “orgId”:””, //обязательный параметр
   
-  “name”:””,
+      “name”:””,
   
-  “address”:””,
+      “address”:””,
   
-  “phone”,””,
+      “phone”,””,
   
-  “isActive”:”true”
+      “isActive”:”true”
   
-}
+    }
 
 Out:
 
-{
+    {
 
     “result”:”success”
     
-}
+    }
 
 
 9. api/user/list
 
 In (фильтр):
 
-{
+    {
 
-  “officeId”:””, //обязательный параметр
+      “officeId”:””, //обязательный параметр
   
-  “firstName”:””,
+      “firstName”:””,
   
-  “lastName”:””,
+      “lastName”:””,
   
-  “middleName”:””,
+      “middleName”:””,
   
-  “position”,””,
+      “position”,””,
   
-  “docCode”:””,
+      “docCode”:””,
   
-  “citizenshipCode”:””
+      “citizenshipCode”:””
   
-}
+    }
 
 Out:
 
-{
+    {
 
-  “id”:””,
+      “id”:””,
   
-  “firstName”:””,
+      “firstName”:””,
   
-  “secondName”:””,
+      “secondName”:””,
   
-  “middleName”:””,
+      “middleName”:””,
   
-  “position”:””
+      “position”:””
   
-}
+    }
 
 
 10. api/user/{id}
 
 Out:
 
-{
+    {
 
-  “id”:””,
+      “id”:””,
   
-  “firstName”:””,
+      “firstName”:””,
   
-  “secondName”:””,
+      “secondName”:””,
   
-  “middleName”:””,
+      “middleName”:””,
   
-  “position”:””
+      “position”:””
   
-  “phone”,””,
+      “phone”,””,
   
-  “docName”:””,
+      “docName”:””,
   
-  “docNumber”:””,
+      “docNumber”:””,
   
-  “docDate”:””,
+      “docDate”:””,
   
-  “citizenshipName”:””,
+      “citizenshipName”:””,
   
-  “citizenshipCode”:””,
+      “citizenshipCode”:””,
   
-  “isIdentified”:”true”
+      “isIdentified”:”true”
   
-}
+    }
 
 
 11. api/user/update
 
 In:
 
-{
+    {
 
-  “id”:””, //обязательный параметр
+      “id”:””, //обязательный параметр
   
-  “officeId”:””,
+      “officeId”:””,
   
-  “firstName”:””, //обязательный параметр
+      “firstName”:””, //обязательный параметр
   
-  “secondName”:””,
+      “secondName”:””,
   
-  “middleName”:””,
+      “middleName”:””,
   
-  “position”:”” //обязательный параметр
+      “position”:”” //обязательный параметр
   
-  “phone”,””,
+      “phone”,””,
   
-  “docName”:””,
+      “docName”:””,
   
-  “docNumber”:””,
+      “docNumber”:””,
   
-  “docDate”:””,
+      “docDate”:””,
   
-  “citizenshipCode”:””,
+      “citizenshipCode”:””,
   
-  “isIdentified”:”true” //пример
+      “isIdentified”:”true” //пример
   
-}
+    }
 
 Out:
 
-{
+    {
 
     “result”:”success”
     
-}
+    }
 
 
 12. api/user/save
 
 In:
 
-{
+    {
 
-  “officeId”:””, //обязательный параметр
+      “officeId”:””, //обязательный параметр
   
-  “firstName”:””, //обязательный параметр
+      “firstName”:””, //обязательный параметр
   
-  “secondName”:””,
+      “secondName”:””,
   
-  “middleName”:””,
+      “middleName”:””,
   
-  “position”:”” //обязательный параметр
+      “position”:”” //обязательный параметр
   
-  “phone”,””,
+      “phone”,””,
   
-  “docCode”:””,
+      “docCode”:””,
   
-  “docName”:””,
+      “docName”:””,
   
-  “docNumber”:””,
+      “docNumber”:””,
   
-  “docDate”:””,
+      “docDate”:””,
   
-  “citizenshipCode”:””,
+      “citizenshipCode”:””,
   
-  “isIdentified”:”true” //пример
+      “isIdentified”:”true” //пример
   
-}
+    }
 
 
 13. api/docs
 
 (Справочники)
 
-[
+    [
 
-  {
+      {
   
-    “name”:“Паспорт гражданина РФ”,
+        “name”:“Паспорт гражданина РФ”,
     
-    “code”:”21”
+        “code”:”21”
     
-  },
+      },
   
-  ...
+      ...
   
-]
+    ]
 
 
 14. api/countries
 
 (Виды документов, удостоверяющих личность физического лица)
 
-[
+    [
 
-  {
+      {
   
-    “name”:“Российская Федерация”,
+        “name”:“Российская Федерация”,
     
-    “code”:”643”
+        “code”:”643”
     
-  },
+      },
   
-  ...
+      ...
   
-]
+    ]
