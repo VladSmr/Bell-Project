@@ -84,7 +84,7 @@ Out:
     
       “name”:””,
     
-      “isActive”:”true”
+      “isActive”:”true”  //пример
     
       },
   
@@ -113,7 +113,7 @@ Out:
   
       “phone”,””,
   
-      “isActive”:”true”
+      “isActive”:”true”  //пример
   
     }
 
@@ -138,7 +138,7 @@ In:
   
       “phone”,””,
   
-      “isActive”:”true”
+      “isActive”:”true”  //пример
   
     }
 
@@ -169,7 +169,7 @@ In:
   
       “phone”,””,
   
-      “isActive”:”true”
+      “isActive”:”true”  //пример
   
     }
 
@@ -208,7 +208,7 @@ Out:
     
         “name”:””,
     
-        “isActive”:”true”
+        “isActive”:”true”  //пример
     
       },
   
@@ -231,7 +231,7 @@ Out:
   
       “phone”,””,
   
-      “isActive”:”true”
+      “isActive”:”true”  //пример
   
     }
 
@@ -277,7 +277,7 @@ In:
   
       “phone”,””,
   
-      “isActive”:”true”
+      “isActive”:”true”  //пример
   
     }
 
@@ -300,7 +300,7 @@ In (фильтр):
   
       “firstName”:””,
   
-      “lastName”:””,
+      “secondName”:””,
   
       “middleName”:””,
   
@@ -314,19 +314,25 @@ In (фильтр):
 
 Out:
 
-    {
+    [
 
-      “id”:””,
+      {
+
+        “id”:””,
   
-      “firstName”:””,
+        “firstName”:””,
   
-      “secondName”:””,
+        “secondName”:””,
   
-      “middleName”:””,
+        “middleName”:””,
   
-      “position”:””
+        “position”:””
   
-    }
+      },
+      
+      ...
+      
+    ]
 
 
 10. api/user/{id}
@@ -357,7 +363,7 @@ Out:
   
       “citizenshipCode”:””,
   
-      “isIdentified”:”true”
+      “isIdentified”:”true”  //пример
   
     }
 
